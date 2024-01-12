@@ -9,6 +9,7 @@ function App() {
     <div className="flex items-center justify-center">
     <h1 className='text-colorBrand500 text-center'>Remotide</h1>
       <Button>Remotide</Button>
+      <p>Changing for ft-test</p>
     </div>
       
     </>
