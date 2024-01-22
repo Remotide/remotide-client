@@ -7,6 +7,7 @@ import Profile from "./ui/Profile";
 function App() {
   return (
     <>
+
       <GlobalStyles />
       {/* <div className="flex items-center justify-center">
         <h1 className="text-colorBrand500 text-center">Remotide</h1>
@@ -20,6 +21,10 @@ function App() {
           <Route path="/profile" element={<Profile />} />
         </Routes>
       </Router>
+
+  
+      
+
     </>
   );
 }
