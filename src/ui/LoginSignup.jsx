@@ -8,7 +8,7 @@ import Select from "./components/Select";
 const LoginSignup = () => {
   const [loginSignup, switchLoginSignup] = useState("Login");
   return (
-    <div className="font-sans flex h-full w-full flex-col items-center gap-y-5 bg-gray-50 p-10 md:p-26 ">
+    <div className="font-sans flex min-h-screen overflow-y-auto w-full flex-col items-center gap-y-5 bg-white p-10 md:p-26 ">
       <img className="h-28 w-32 object-contain object-center" src={Remotide} />
       <div className="flex items-center justify-center text-center text-2xl font-bold leading-normal text-zinc-400">
         Remotide
