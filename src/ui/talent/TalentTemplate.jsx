@@ -1,18 +1,19 @@
-import Remotide from "../assets/remotide.svg";
-import Home from "../assets/Home.svg";
-import User from "../assets/user-circle.svg";
-import Calander from "../assets/calender-alt-2.svg";
-import UserAlt from "../assets/user-alt-4.svg";
-import DragDown from "../assets/DragDown.svg";
-import Notification from "../assets/notification.svg";
-import Selection from "./Selection";
+import React from "react";
+import Remotide from "../../assets/remotide.svg";
+import Home from "../../assets/Home.svg";
+import User from "../../assets/user-circle.svg";
+import Calander from "../../assets/calender-alt-2.svg";
+import DragDown from "../../assets/DragDown.svg";
+import Notification from "../../assets/notification.svg";
+import Selection from "../components/Selection";
 import { Link } from "react-router-dom";
-import NavBar from "./NavBar";
-const JobTemplate = (props) => {
+import Sidebar from "../components/Sidebar";
+import NavBar from "../components/NavBar";
+const TalentTemplate = (props) => {
   return (
-    <div className="font-sans flex flex-row w-full text-xl leading-normal tracking-[0px]">
-      <div className="grid grid-cols-12 h-full w-full  items-start justify-between overflow-clip bg-gray-50 pb-0.5">
-        <div className="flex col-span-3 lg:col-span-2 flex-col items-center self-stretch bg-gray-800 px-3.5 pb-96 pt-10 drop-shadow-lg">
+    <div className="font-sans flex flex-row w-full min-h-screen overflow-y-auto text-xl leading-normal tracking-[0px]">
+      <div className="grid grid-cols-12 min-h-screen overflow-y-auto w-full  items-start justify-between overflow-clip bg-gray-50 pb-0.5">
+        <Sidebar>
           <div className="flex flex-row gap-x-4 items-center justify-center pt-5">
             <img
               className="h-12 w-12 object-contain object-center"
@@ -22,8 +23,8 @@ const JobTemplate = (props) => {
               Remotide
             </div>
           </div>
-          <div className="flex flex-col  pt-48">
-            <Selection background="gray-800" color="white">
+          <div className="flex flex-col pt-48">
+            <Selection background="gray-800" color="white" padding="r">
               <img
                 src={Calander}
                 alt="Jobs"
@@ -31,16 +32,12 @@ const JobTemplate = (props) => {
               />{" "}
               <Link to="/jobs">Jobs</Link>
             </Selection>
-            <Selection background="gray-800" color="white">
-              <img
-                src={UserAlt}
-                alt="Profile"
-                className="text-white w-5 h-5 mr-2"
-              />{" "}
-              <Link to="/profile">Profile</Link>
+            <Selection background="gray-800" color="white" padding="r">
+              <img src={Home} alt="Home" className="text-white w-5 h-5 mr-2" />{" "}
+              <Link to="/talent/profile">Home</Link>
             </Selection>
           </div>
-        </div>
+        </Sidebar>
         <div className="flex flex-col h-15 col-span-9 lg:col-span-10 items-start justify-start">
           <NavBar>
             <div className="flex flex-row items-center justify-center">
@@ -68,4 +65,4 @@ const JobTemplate = (props) => {
   );
 };
 
-export default JobTemplate;
+export default TalentTemplate;
