@@ -1,30 +1,31 @@
 import GlobalStyles from "./styles/GlobalStyles";
 import { Route, Routes } from "react-router-dom";
 import { BrowserRouter as Router } from "react-router-dom";
-import Button from "./ui/Button";
-import Signup from "./ui/Signup";
-import Profile from "./ui/Profile";
+import Signup from "./ui/LoginSignup";
+import Jobs from "./ui/company/Jobs";
+import JobsForm from "./ui/company/JobsForm";
+import CompanyProfile from "./ui/company/Profile";
+import DisplayApplicants from "./ui/company/DisplayApplicants";
+import TalentProfile from "./ui/talent/Profile";
+import LegalCompliance from "./ui/company/LegalCompliance";
 function App() {
   return (
     <>
-
       <GlobalStyles />
-      {/* <div className="flex items-center justify-center">
-        <h1 className="text-colorBrand500 text-center">Remotide</h1>
-        <Button>Remotide</Button>
-      </div>
-      <Signup />
-      <Profile /> */}
       <Router>
         <Routes>
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/" element={<Signup />} />
+          <Route path="/talent/profile" element={<TalentProfile />} />
+          <Route path="/company/profile" element={<CompanyProfile />} />
+          <Route path="company/legalCompliance" element={<LegalCompliance />} />
+          <Route path="/jobs" element={<Jobs />} />
+          <Route path="/postJobs" element={<JobsForm />} />
+          <Route
+            path="/company/displayApplicants/:id/:title"
+            element={<DisplayApplicants />}
+          />
         </Routes>
       </Router>
-
-  
-      
-
     </>
   );
 }
