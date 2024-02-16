@@ -1,10 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import TalentTemplate from "./TalentTemplate";
 import Label from "../components/Label";
 import Textarea from "../components/Textarea";
 import Input from "../components/Input";
 import Button from "../components/Button";
+import { skills } from "../data";
+import DropDownSelect from "../components/DropDownSelect";
 const TalentProfile = () => {
+  const [selectedSkills, setSelectedSkills] = useState([]);
+
+  const handleSkillSelection = (option) => {
+    const selectedOption = option;
+    if (!selectedSkills.includes(selectedOption))
+      setSelectedSkills([...selectedSkills, selectedOption]);
+  };
+
+  const removeSkillTag = (skillToRemove) => {
+    setSelectedSkills(
+      selectedSkills.filter((skill) => skill !== skillToRemove)
+    );
+  };
   return (
     <TalentTemplate>
       <div className="flex flex-col items-center w-full  font-sans font-medium">
@@ -34,6 +49,16 @@ const TalentProfile = () => {
               <Textarea
                 id="description"
                 placeholder="Enter a description about yourself"
+              />
+            </div>
+            <div className="flex flex-1 flex-col space-y-2">
+              <Label htmlFor="skills">Skills</Label>
+              <DropDownSelect
+                name="Skills"
+                options={skills}
+                removeOptionTag={removeSkillTag}
+                selectedOptions={selectedSkills}
+                handleOptionSelection={handleSkillSelection}
               />
             </div>
             <div className="space-y-4">

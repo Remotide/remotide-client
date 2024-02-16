@@ -1,9 +1,8 @@
 import React from "react";
-import Xsign from "../../assets/x-sign.svg";
-import DragDown from "../../assets/DragDown.svg";
 import { useState } from "react";
 import Input from "./Input";
 import Button from "./Button";
+import { FaChevronDown, FaTimes } from "react-icons/fa";
 const DropDownSelect = (props) => {
   const [isOpen, setIsOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
@@ -29,7 +28,7 @@ const DropDownSelect = (props) => {
         >
           <>
             Show {props.name}
-            <img className="bg-white-100 w-5" src={DragDown} alt="Down Icon" />
+            <FaChevronDown />
           </>
         </Button>
       )}
@@ -37,23 +36,21 @@ const DropDownSelect = (props) => {
         <div className="h-auto w-full bg-white border border-gray-300 rounded-md shadow-md">
           <div className="grid grid-cols-12 items-center justify-center">
             <Input
-              size="w-full col-span-11"
+              size="w-full sm:col-span-11 col-span-10"
               type="text-black"
               placeholder="Search..."
               onChange={(e) => {
                 handleSearchInput(e.target.value);
               }}
             />
+
             <Button
+              style="w-full sm:col-span-1 col-span-2"
               background="bg-white"
               color="text-black"
               onClick={toggleDropdown}
             >
-              <img
-                src={Xsign}
-                alt="Xsign"
-                className="text-white w-7 h-7 mr-2"
-              />
+              <FaTimes />
             </Button>
           </div>
           <ul className="w-full">
@@ -85,11 +82,7 @@ const DropDownSelect = (props) => {
               onClick={() => props.removeOptionTag(option)}
               className="flex-shrink-0 ml-1.5 text-blue-400 hover:text-blue-500"
             >
-              <img
-                src={Xsign}
-                alt="Xsign"
-                className="text-white w-6 h-6 mr-2"
-              />
+              <FaTimes />
             </button>
           </span>
         ))}

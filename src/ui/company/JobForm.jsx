@@ -5,17 +5,8 @@ import Input from "../components/Input";
 import Textarea from "../components/Textarea";
 import Button from "../components/Button";
 import { useState } from "react";
-const JobsForm = () => {
-  const skills = [
-    "Land and Environment",
-    "Transport and Logistics",
-    "Programming",
-    "Design",
-    "Marketing",
-    "Finance",
-    "Human Resources",
-    "Sales",
-  ];
+import { skills } from "../data";
+const JobForm = () => {
   const [selectedSkills, setSelectedSkills] = useState([]);
 
   const handleSkillSelection = (option) => {
@@ -85,4 +76,4 @@ const JobsForm = () => {
   );
 };
 
-export default JobsForm;
+export default JobForm;
