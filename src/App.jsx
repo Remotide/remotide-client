@@ -1,26 +1,15 @@
 import GlobalStyles from "./styles/GlobalStyles";
-import { Route, Routes } from "react-router-dom";
-import { BrowserRouter as Router } from "react-router-dom";
-import Signup from "./ui/LoginSignup";
-import TalentRoutes from "./ui/talent/TalentRoutes";
-import CompanyRoutes from "./ui/company/CompanyRoutes";
-import AdminRoutes from "./ui/admin/AdminRoutes";
+import { RouterProvider } from "react-router-dom";
+import { router } from "./navigation/router";
+import { Toaster } from "react-hot-toast";
+
 function App() {
   return (
     <>
+      <Toaster />
       <GlobalStyles />
-      <Router>
-        <Routes>
-          {/* login and signup page */}
-          <Route path="/" element={<Signup />} />
-          {/* talent page */}
-          ...{TalentRoutes}
-          {/* company page */}
-          ...{CompanyRoutes}
-          {/* admin page */}
-          ...{AdminRoutes}
-        </Routes>
-      </Router>
+
+      <RouterProvider router={router} />
     </>
   );
 }

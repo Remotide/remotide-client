@@ -1,0 +1,42 @@
+import React from "react";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css"; // import styles
+
+const Textarea = (props) => {
+  const { id, name, placeholder, type, value, handleChange, required } = props;
+
+  // Define custom toolbar options
+  const modules = {
+    toolbar: [
+      ["bold", "italic", "underline", "strike"],
+      ["blockquote", "code-block"],
+      [{ header: 1 }, { header: 2 }],
+      [{ list: "ordered" }, { list: "bullet" }],
+      [{ script: "sub" }, { script: "super" }],
+      [{ indent: "-1" }, { indent: "+1" }],
+      [{ direction: "rtl" }],
+      [{ size: ["small", false, "large", "huge"] }],
+      [{ header: [1, 2, 3, 4, 5, 6, false] }],
+      [{ color: [] }, { background: [] }],
+      [{ font: [] }],
+      [{ align: [] }],
+      ["image"],
+      ["clean"],
+    ],
+  };
+
+  return (
+    <ReactQuill
+      id={id}
+      name={name}
+      value={value}
+      placeholder={placeholder}
+      onChange={(e) => handleChange({ target: { value: e, type: "textarea" } })}
+      modules={modules}
+      required={required}
+      theme="snow"
+    />
+  );
+};
+
+export default Textarea;
