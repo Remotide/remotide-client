@@ -26,9 +26,6 @@ const UpdateUser = () => {
     setUserUpdateSubmitting(true);
     updateUser({ name, email }).finally(setUserUpdateSubmitting(false));
     // Handle form submission for updating name and username
-
-    console.log("Name:", name);
-    console.log("Email:", email);
   };
 
   const handlePasswordSubmit = (e) => {
@@ -40,9 +37,6 @@ const UpdateUser = () => {
         setPasswordUpdateSubmitting(false)
       );
     }
-    console.log("Old Password:", currentPassword);
-    console.log("New Password:", newPassword);
-    console.log("Confirm Password:", confirmPassword);
   };
 
   return (

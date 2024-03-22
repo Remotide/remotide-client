@@ -29,7 +29,7 @@ export const useFetchGuide = (id) => {
         if(id) {
           try {
             const res=await fetcher(`${baseURL}/${id}`);
-            console.log(res)
+            // console.log(res)
             return res["guide"];
           } catch (error) {
             // console.log(error);

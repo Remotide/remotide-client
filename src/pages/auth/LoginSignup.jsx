@@ -21,7 +21,7 @@ const LoginSignup = () => {
         name: email,
         email: email,
         password,
-        role: event.target[2].value.toLowerCase(),
+        role: event.target[3].value.toLowerCase(),
       }).finally(() => setIsSubmitting(false));
     }
   };
@@ -90,7 +90,7 @@ const LoginSignup = () => {
               {loginSignup == "SignUp" && (
                 <>
                   <Label htmlFor="userType">User Type</Label>
-                  <Select options={["Talent", "Company"]} />
+                  <Select id="userType" options={["Talent", "Company"]} />
                 </>
               )}
             </div>

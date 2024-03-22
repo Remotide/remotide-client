@@ -9,7 +9,7 @@ export const useFetchTopTalent = (id) => {
         if (id) {
           try {
             const res=await fetcher(`${baseURL}/bestcandidates/${id}`);
-            console.log(res.candidates)
+            // console.log(res.candidates)
             return res.candidates;
           } catch (error) {
             // console.log(error);

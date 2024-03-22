@@ -32,7 +32,7 @@ function useUserActions() {
     try {
       // Registering the account and tokens in the store
       const res = await axios.post(`/api${baseURL}/login/`, data);
-      console.log(res.data)
+      // console.log(res.data)
       const user=res.data["user"];
       setUserData(
         {
@@ -48,7 +48,7 @@ function useUserActions() {
         description: "Logged in Successfully",
       });
     } catch (e) {
-      console.log(e)
+      // console.log(e)
       notify({
         title: "Error",
         variant: "error",
@@ -63,7 +63,7 @@ function useUserActions() {
       const res = await axios.post(`/api${baseURL}/signup/`, data);
       // Registering the account and tokens in the store
       const user = res.data["data"]["newUser"];
-      console.log(res)
+      // console.log(res)
       setUserData({
         access: res.data.token,
         user: user
@@ -76,7 +76,7 @@ function useUserActions() {
         description: "Registered Successfully.",
       });
     } catch (error) {
-      console.log(error)
+      // console.log(error)
       notify({
         title: "Error",
         variant: "error",
@@ -131,7 +131,7 @@ function useUserActions() {
       // TODO: Change Request route here
       const res = await axiosService.post(`${baseURL}/edit-profile`,{name,email})
       const user = res.data["user"];
-      console.log(res)
+      // console.log(res)
       setUserData({
         access: res.data.token,
         user: user
@@ -157,7 +157,7 @@ function useUserActions() {
       // TODO: Change Request route here
       const res = await axiosService.post(`${baseURL}/change-password`,{currentPassword,newPassword})
       const user = res.data["user"];
-      console.log(res)
+      // console.log(res)
       setUserData({
         access: res.data.token,
         user: user
