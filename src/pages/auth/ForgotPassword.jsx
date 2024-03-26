@@ -32,7 +32,7 @@ const ForgotPassword = () => {
               <Label htmlFor="email">Email Address</Label>
               <Input
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => setEmail(e.target.value.trim())}
                 size="w-full"
                 type="email"
                 name="email"

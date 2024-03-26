@@ -42,29 +42,32 @@ const Jobs = () => {
           <Link to="/company/job">Create</Link>
         </Button>
       </div>
-      <table className="w-full text-left rtl:text-right text-gray-500">
-        <thead className=" text-gray-400 uppercase bg-gray-50 ">
-          <tr>
-            <th scope="col" className="px-5 py-3 text-sm md:text-xl">
-              Job Title
-            </th>
-            <th scope="col" className="px-5 py-3 text-sm md:text-xl">
-              Description
-            </th>
-            <th
-              scope="col"
-              className="hidden sm:table-cell px-5 py-3 text-sm md:text-xl"
-            >
-              Payment
-            </th>
-            <th scope="col" className="px-5 py-3 text-sm md:text-xl">
-              Actions
-            </th>
-          </tr>
-        </thead>
-        {isAllJobsFetching ? (
-          <Loading />
-        ) : (
+      {isAllJobsFetching ? (
+        <Loading />
+      ) : (
+        <table className="w-full text-left rtl:text-right text-gray-500">
+          <thead className=" text-gray-400 uppercase bg-gray-50 ">
+            <tr>
+              <th scope="col" className="px-5 py-3 text-sm md:text-xl">
+                Job Title
+              </th>
+              <th
+                scope="col"
+                className="px-5 py-3 text-sm md:text-xl max-[450px]:hidden"
+              >
+                Description
+              </th>
+              <th
+                scope="col"
+                className="hidden sm:table-cell px-5 py-3 text-sm md:text-xl"
+              >
+                Payment
+              </th>
+              <th scope="col" className="px-5 py-3 text-sm md:text-xl">
+                Actions
+              </th>
+            </tr>
+          </thead>
           <tbody>
             {filteredJobs.map((job, index) => {
               return (
@@ -83,7 +86,7 @@ const Jobs = () => {
                       {job.title}
                     </Link>
                   </th>
-                  <td className="px-4 sm:px-5 py-4 text-sm md:text-xl">
+                  <td className="px-4 sm:px-5 py-4 text-sm md:text-xl max-[450px]:hidden">
                     <div
                       dangerouslySetInnerHTML={{
                         __html: truncate(job.description, 75),
@@ -120,8 +123,8 @@ const Jobs = () => {
               );
             })}
           </tbody>
-        )}
-      </table>
+        </table>
+      )}
     </div>
   );
 };

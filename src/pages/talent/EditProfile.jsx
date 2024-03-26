@@ -79,9 +79,9 @@ const EditTalentProfile = () => {
           });
         }
       } else if (type === "textarea") {
-        setFormData({ ...formData, ["description"]: value });
+        setFormData({ ...formData, ["description"]: value.trim() });
       } else {
-        setFormData({ ...formData, [id]: value });
+        setFormData({ ...formData, [id]: value.trim() });
       }
     }
   };
@@ -264,7 +264,7 @@ const EditTalentProfile = () => {
                   </Label>
                 </div>
                 <Button size="w-full" type="submit" disabled={isEditing}>
-                  Save
+                  {isEditing ? "Saving Changes" : "Edit Profile"}
                 </Button>
               </div>
             </form>

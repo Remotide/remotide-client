@@ -46,7 +46,7 @@ const Skills = () => {
 
   const handleChange = (e) => {
     const { id, value, type } = e.target;
-    setSelectedSkill({ ...selectedSkill, [id]: value });
+    setSelectedSkill({ ...selectedSkill, [id]: value.trim() });
   };
 
   const handleSubmit = (e) => {
@@ -73,7 +73,7 @@ const Skills = () => {
           size="w-4/5"
           placeholder="Search skills"
           value={searchTerm}
-          onChange={(event) => setSearchTerm(event.target.value)}
+          onChange={(event) => setSearchTerm(event.target.value.trim())}
         />
         <div className="flex flex-row h-12 mt-5 items-center font-bold text-base md:text-3xl justify-between px-3 md:px-12 w-full bg-white">
           <p>Skills</p>
@@ -81,20 +81,20 @@ const Skills = () => {
             Create
           </Button>
         </div>
-        <table className="w-full text-left rtl:text-right text-gray-500">
-          <thead className="text-gray-400 uppercase bg-gray-50">
-            <tr>
-              <th scope="col" className="px-5 py-3 text-base md:text-xl">
-                Skill
-              </th>
-              <th scope="col" className="px-5 py-3 text-base md:text-xl">
-                Actions
-              </th>
-            </tr>
-          </thead>
-          {isAllSkillsFetching ? (
-            <Loading />
-          ) : (
+        {isAllSkillsFetching ? (
+          <Loading />
+        ) : (
+          <table className="w-full text-left rtl:text-right text-gray-500">
+            <thead className="text-gray-400 uppercase bg-gray-50">
+              <tr>
+                <th scope="col" className="px-5 py-3 text-base md:text-xl">
+                  Skill
+                </th>
+                <th scope="col" className="px-5 py-3 text-base md:text-xl">
+                  Actions
+                </th>
+              </tr>
+            </thead>
             <tbody className="bg-white divide-y divide-gray-200">
               {filteredSkills.map((skill, index) => (
                 <tr
@@ -139,8 +139,8 @@ const Skills = () => {
                 </tr>
               ))}
             </tbody>
-          )}
-        </table>
+          </table>
+        )}
       </div>
       <Modal isOpen={isModalOpen} onClose={closeModal}>
         <form onSubmit={handleSubmit}>

@@ -3,7 +3,7 @@ import { FaBell, FaUserCircle, FaUserAlt, FaSignOutAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { Button } from "./index";
 import { useUserActions } from "@/actions/user.action";
-const NavBar = () => {
+const NavBar = ({ user }) => {
   const [showLogoutDialog, setShowLogoutDialog] = useState(false);
   const { logout } = useUserActions();
   const handleLogout = () => {
@@ -54,7 +54,7 @@ const NavBar = () => {
         </ul>
         {showLogoutDialog && (
           <div
-            className="fixed inset-0 flex items-start justify-center z-50"
+            className="fixed inset-0 flex items-center justify-center z-50"
             onClick={cancelLogout}
           >
             <div
@@ -87,19 +87,13 @@ const NavBar = () => {
           </div>
         )}
       </div>
-      {/* <ConfirmationDialog
-              label={
-                <>
-                  <FaSignOutAlt /> Log out
-                </>
-              }
-              description={`Are you sure you want to log out ?`}
-              title="Log out"
-              onConfirm={() => {
-                logout();
-              }}
-            /> */}
-      <FaBell size={20} />
+      {
+        /* <FaBell size={20} />
+         */
+        user && (
+          <p className="font-medium text-gray-700">Welcome, {user.name}</p>
+        )
+      }
     </div>
   );
 };

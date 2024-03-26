@@ -19,7 +19,7 @@ const ConfirmDialog = ({ onConfirm, title, label, description }) => {
 
       {isOpen && (
         <div className="fixed z-50 inset-0 overflow-y-auto">
-          <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+          <div className="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:p-0">
             <div
               className="fixed inset-0 transition-opacity"
               aria-hidden="true"
@@ -45,7 +45,7 @@ const ConfirmDialog = ({ onConfirm, title, label, description }) => {
                   </div>
                 </div>
               </div>
-              <div className="bg-gray-50 gap-3 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+              <div className="bg-gray-50 gap-3 py-3 px-6 flex flex-row-reverse">
                 <Button
                   size="sm:w-fit"
                   background="bg-red-500"

@@ -33,9 +33,9 @@ const GuideForm = () => {
   const handleChange = (e) => {
     const { id, value, type } = e.target;
     if (type === "textarea") {
-      setGuide({ ...guide, ["description"]: value });
+      setGuide({ ...guide, ["description"]: value.trim() });
     } else {
-      setGuide({ ...guide, [id]: value });
+      setGuide({ ...guide, [id]: value.trim() });
     }
   };
 
@@ -48,7 +48,7 @@ const GuideForm = () => {
     <div className="min-h-screen font-sans text-lg bg-gray-50 flex flex-col w-full justify-center py-12 sm:px-4 lg:px-6">
       <div className="sm:mx-auto  sm:max-w-6xl">
         <h2 className="mt-6 text-center text-3xl leading-9 font-extrabold text-gray-900">
-          View or Edit your Guide
+          Edit your Guide
         </h2>
       </div>
 

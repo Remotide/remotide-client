@@ -40,7 +40,7 @@ const Packages = () => {
         size="w-4/5"
         placeholder="Search for package"
         value={searchTerm}
-        onChange={(event) => setSearchTerm(event.target.value)}
+        onChange={(event) => setSearchTerm(event.target.value.trim())}
       />
       <div className="flex flex-row h-12 mt-5 items-center font-bold text-base md:text-3xl justify-between px-3 md:px-12 w-full bg-white">
         <p>Packages</p>
@@ -48,35 +48,38 @@ const Packages = () => {
           <Link to="/admin/package">Create</Link>
         </Button>
       </div>
-      <table className="w-full text-left rtl:text-right text-gray-500">
-        <thead className="text-gray-400 uppercase bg-gray-50">
-          <tr>
-            <th scope="col" className="px-5 py-3 text-base md:text-xl">
-              Package
-            </th>
-            <th scope="col" className="px-5 py-3 text-sm md:text-xl">
-              Description
-            </th>
-            <th
-              scope="col"
-              className="hidden sm:table-cell px-5 py-3 text-sm md:text-xl"
-            >
-              Price
-            </th>
-            <th
-              scope="col"
-              className="hidden sm:table-cell px-5 py-3 text-sm md:text-xl"
-            >
-              Discount
-            </th>
-            <th scope="col" className="px-5 py-3 text-base md:text-xl">
-              Actions
-            </th>
-          </tr>
-        </thead>
-        {isPackagesFetching ? (
-          <Loading />
-        ) : (
+      {isPackagesFetching ? (
+        <Loading />
+      ) : (
+        <table className="w-full text-left rtl:text-right text-gray-500">
+          <thead className="text-gray-400 uppercase bg-gray-50">
+            <tr>
+              <th scope="col" className="px-5 py-3 text-base md:text-xl">
+                Package
+              </th>
+              <th
+                scope="col"
+                className="px-5 py-3 text-sm md:text-xl max-md:hidden"
+              >
+                Description
+              </th>
+              <th
+                scope="col"
+                className="hidden sm:table-cell px-5 py-3 text-sm md:text-xl"
+              >
+                Price
+              </th>
+              <th
+                scope="col"
+                className="hidden sm:table-cell px-5 py-3 text-sm md:text-xl"
+              >
+                Discount
+              </th>
+              <th scope="col" className="px-5 py-3 text-base md:text-xl">
+                Actions
+              </th>
+            </tr>
+          </thead>
           <tbody className="bg-white divide-y divide-gray-200">
             {filteredPackages?.map((packageItem, index) => (
               <tr
@@ -89,7 +92,7 @@ const Packages = () => {
                 >
                   {packageItem.name}
                 </td>
-                <td className="px-4 sm:px-5 py-4 text-sm md:text-xl">
+                <td className="px-4 sm:px-5 py-4 text-sm md:text-xl max-md:hidden">
                   <div
                     dangerouslySetInnerHTML={{
                       __html: truncate(packageItem.description, 75),
@@ -131,8 +134,8 @@ const Packages = () => {
               </tr>
             ))}
           </tbody>
-        )}
-      </table>
+        </table>
+      )}
     </div>
   );
 };

@@ -35,7 +35,7 @@ const Sidebar = (props) => {
     return colorPicker(pathname) == "white" ? "gray-800" : "gray-100";
   };
   return (
-    <div className="fixed top-0 z-50 lg:w-1/6 w-1/4 flex flex-col min-h-screen overflow-y-auto items-center self-stretch bg-gray-800 px-3.5 pb-96 pt-10 drop-shadow-lg">
+    <div className="fixed top-0 z-50 lg:w-1/5 max-w-md w-full h-full flex flex-col max-h-screen overflow-auto items-center self-stretch bg-inherit px-3.5  pt-10 drop-shadow-lg">
       {role == "talent" ? (
         <>
           <div

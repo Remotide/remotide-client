@@ -35,7 +35,7 @@ const Guides = () => {
         size="w-4/5"
         placeholder="Search for guide"
         value={searchTerm}
-        onChange={(event) => setSearchTerm(event.target.value)}
+        onChange={(event) => setSearchTerm(event.target.value.trim())}
       />
       <div className="flex flex-row h-12 mt-5 items-center font-bold text-base md:text-3xl justify-between px-3 md:px-12 w-full bg-white">
         <p>Guides</p>
@@ -43,23 +43,23 @@ const Guides = () => {
           <Link to="/admin/guide">Create</Link>
         </Button>
       </div>
-      <table className="w-full text-left rtl:text-right text-gray-500">
-        <thead className="text-gray-400 uppercase bg-gray-50">
-          <tr>
-            <th scope="col" className="px-5 py-3 text-base md:text-xl">
-              Guide
-            </th>
-            <th scope="col" className="px-5 py-3 text-sm md:text-xl">
-              Description
-            </th>
-            <th scope="col" className="px-5 py-3 text-base md:text-xl">
-              Actions
-            </th>
-          </tr>
-        </thead>
-        {isGuidesFetching || !filteredGuides ? (
-          <Loading />
-        ) : (
+      {isGuidesFetching || !filteredGuides ? (
+        <Loading />
+      ) : (
+        <table className="w-full text-left rtl:text-right text-gray-500">
+          <thead className="text-gray-400 uppercase bg-gray-50">
+            <tr>
+              <th scope="col" className="px-5 py-3 text-base md:text-xl">
+                Guide
+              </th>
+              <th scope="col" className="px-5 py-3 text-sm md:text-xl">
+                Description
+              </th>
+              <th scope="col" className="px-5 py-3 text-base md:text-xl">
+                Actions
+              </th>
+            </tr>
+          </thead>
           <tbody className="bg-white divide-y divide-gray-200">
             {filteredGuides?.map((guide, index) => (
               <tr
@@ -105,8 +105,8 @@ const Guides = () => {
               </tr>
             ))}
           </tbody>
-        )}
-      </table>
+        </table>
+      )}
     </div>
   );
 };

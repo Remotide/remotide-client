@@ -48,7 +48,7 @@ const EditCompanyProfile = () => {
         });
       }
     } else {
-      setFormData({ ...formData, [id]: value });
+      setFormData({ ...formData, [id]: value.trim() });
     }
   };
 
@@ -84,7 +84,7 @@ const EditCompanyProfile = () => {
     <div className="min-h-screen font-sans text-lg bg-gray-50 flex flex-col w-full justify-center py-12 sm:px-4 lg:px-6">
       <div className="sm:mx-auto  sm:max-w-6xl">
         <h2 className="mt-6 text-center text-3xl leading-9 font-extrabold text-gray-900">
-          View or Edit your Profile
+          Edit your Profile
         </h2>
       </div>
 
@@ -183,7 +183,7 @@ const EditCompanyProfile = () => {
             <div className="mt-6">
               <span className="flex flex-grow items-center justify-center w-full rounded-md shadow-sm">
                 <Button size="w-full" type="submit" disabled={isEditing}>
-                  Edit Profile
+                  {isEditing ? "Saving Changes" : "Edit Profile"}
                 </Button>
               </span>
             </div>

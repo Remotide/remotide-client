@@ -66,7 +66,7 @@ const LoginSignup = () => {
               <Label htmlFor="email">Email Address</Label>
               <Input
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => setEmail(e.target.value.trim())}
                 size="w-full"
                 type="email"
                 name="email"
@@ -79,7 +79,7 @@ const LoginSignup = () => {
               <Label htmlFor="password">Password</Label>
               <Input
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e) => setPassword(e.target.value.trim())}
                 size="w-full"
                 type="password"
                 name="password"
@@ -110,7 +110,7 @@ const LoginSignup = () => {
         </div>
         <Link
           to="/auth/forgotPassword"
-          className="text-blue-600 font-medium flex w-full items-center justify-center text-xl"
+          className="text-blue-600 font-medium flex w-full items-center justify-center text-xl my-3"
         >
           Forgot Password ?
         </Link>

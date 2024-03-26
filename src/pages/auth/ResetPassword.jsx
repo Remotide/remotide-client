@@ -44,7 +44,7 @@ const ResetPassword = () => {
               <Label htmlFor="password">Password</Label>
               <Input
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e) => setPassword(e.target.value.trim())}
                 size="w-full"
                 type="password"
                 id="password"
@@ -56,7 +56,7 @@ const ResetPassword = () => {
               <Label htmlFor="confirmPassword">Confirm Password</Label>
               <Input
                 value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
+                onChange={(e) => setConfirmPassword(e.target.value.trim())}
                 size="w-full"
                 type="password"
                 id="confirmPassword"

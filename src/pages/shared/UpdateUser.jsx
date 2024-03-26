@@ -56,7 +56,7 @@ const UpdateUser = () => {
             id="name"
             size="w-full"
             value={name}
-            onChange={(e) => setName(e.target.value)}
+            onChange={(e) => setName(e.target.value.trim())}
             placeholder="Enter your name"
             required={false}
           />
@@ -68,7 +68,7 @@ const UpdateUser = () => {
             id="email"
             size="w-full"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => setEmail(e.target.value.trim())}
             placeholder="Enter your Email"
             required={false}
           />
@@ -92,7 +92,7 @@ const UpdateUser = () => {
             id="currentPassword"
             size="w-full"
             value={currentPassword}
-            onChange={(e) => setCurrentPassword(e.target.value)}
+            onChange={(e) => setCurrentPassword(e.target.value.trim())}
             placeholder="Enter your current password"
             required={true}
           />
@@ -104,7 +104,7 @@ const UpdateUser = () => {
             id="newPassword"
             size="w-full"
             value={newPassword}
-            onChange={(e) => setNewPassword(e.target.value)}
+            onChange={(e) => setNewPassword(e.target.value.trim())}
             placeholder="Enter your new password"
             required={true}
           />
@@ -116,7 +116,7 @@ const UpdateUser = () => {
             id="confirmPassword"
             size="w-full"
             value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
+            onChange={(e) => setConfirmPassword(e.target.value.trim())}
             placeholder="Confirm your new password"
             required={true}
           />

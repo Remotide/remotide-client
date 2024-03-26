@@ -51,7 +51,7 @@ const ManageAdmins = () => {
 
   const handleChange = (e) => {
     const { id, value, type } = e.target;
-    setSelectedAdmin({ ...selectedAdmin, [id]: value });
+    setSelectedAdmin({ ...selectedAdmin, [id]: value.trim() });
   };
 
   const handleSubmit = (e) => {
@@ -78,7 +78,7 @@ const ManageAdmins = () => {
           size="w-4/5"
           placeholder="Search for an admin"
           value={searchTerm}
-          onChange={(event) => setSearchTerm(event.target.value)}
+          onChange={(event) => setSearchTerm(event.target.value.trim())}
         />
         <div className="flex flex-row h-12 mt-5 items-center font-bold text-base md:text-3xl justify-between px-3 md:px-12 w-full bg-white">
           <p>Admins</p>

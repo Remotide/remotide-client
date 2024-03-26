@@ -2,7 +2,7 @@ import React from "react";
 import { Label, Input, Textarea, Button } from "@/components";
 const LegalCompliance = () => {
   return (
-    <div className="flex flex-grow w-full items-center px-6 md:px-8 justify-center font-sans">
+    <div className="flex flex-grow w-full items-center my-5 px-6 md:px-8 justify-center font-sans">
       <main className="w-full">
         <div className="flex px-4 md:px-6">
           <div className="flex flex-col flex-grow w-full">

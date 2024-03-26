@@ -36,9 +36,9 @@ const PackageForm = () => {
   const handleChange = (e) => {
     const { id, value, type } = e.target;
     if (type === "textarea") {
-      setPackageItem({ ...packageItem, ["description"]: value });
+      setPackageItem({ ...packageItem, ["description"]: value.trim() });
     } else {
-      setPackageItem({ ...packageItem, [id]: value });
+      setPackageItem({ ...packageItem, [id]: value.trim() });
     }
   };
 
@@ -60,7 +60,7 @@ const PackageForm = () => {
           originalPrice,
           startDate,
           endDate,
-          discountPercentage,
+          discountPercentage: Math.min(Math.max(0, discountPercentage), 100),
         },
       },
       navigate,
@@ -71,7 +71,7 @@ const PackageForm = () => {
     <div className="min-h-screen font-sans text-lg bg-gray-50 flex flex-col w-full justify-center py-12 sm:px-4 lg:px-6">
       <div className="sm:mx-auto  sm:max-w-6xl">
         <h2 className="mt-6 text-center text-3xl leading-9 font-extrabold text-gray-900">
-          View or Edit your Package
+          Edit your Package
         </h2>
       </div>
 

@@ -98,6 +98,8 @@ const Stats = () => {
   };
 
   const options = {
+    responsive: true,
+    maintainAspectRatio: false,
     scales: {
       x: {
         title: {
@@ -121,7 +123,7 @@ const Stats = () => {
   };
 
   return (
-    <div className="bg-gray-50 w-full p-10">
+    <div className="bg-gray-50 w-full overflow-auto p-10">
       <p className="font-bold text-6xl text-black">Dashboard</p>
       <p className="font-light text-3xl text-gray-500">
         Summary of remotide's performance
@@ -148,24 +150,24 @@ const Stats = () => {
       </div>
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-4">
         <div className="bg-white shadow-md rounded-lg p-4">
-          <p className="text-gray-700 font-bold">Total Users</p>
+          <p className="text-gray-700 font-bold">Users Registered</p>
           <p className="text-3xl font-bold">{totalUsers}</p>
         </div>
         <div className="bg-white shadow-md rounded-lg p-4">
-          <p className="text-gray-700 font-bold">Total Jobs</p>
+          <p className="text-gray-700 font-bold">Jobs Created</p>
           <p className="text-3xl font-bold">{totalJobs}</p>
         </div>
         <div className="bg-white shadow-md rounded-lg p-4">
-          <p className="text-gray-700 font-bold">Total Talents</p>
+          <p className="text-gray-700 font-bold">Talents Registered</p>
           <p className="text-3xl font-bold">{totalTalents}</p>
         </div>
         <div className="bg-white shadow-md rounded-lg p-4">
-          <p className="text-gray-700 font-bold">Total Companies</p>
+          <p className="text-gray-700 font-bold">Companies Registered</p>
           <p className="text-3xl font-bold">{totalCompanies}</p>
         </div>
       </div>
       {!isFetching ? (
-        <div className="m-4 bg-white rounded shadow w-full">
+        <div className="chart-container relative h-[60vh] w-full">
           <Line data={chartData} options={options} />
         </div>
       ) : (

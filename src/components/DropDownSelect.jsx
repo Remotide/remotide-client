@@ -44,14 +44,15 @@ const DropDownSelect = (props) => {
       ) : (
         <div className="h-auto w-full bg-white border border-gray-300 rounded-md shadow-md">
           <div className="grid grid-cols-12 items-center justify-center">
-            <Input
-              size="w-full sm:col-span-11 col-span-10"
-              type="text-black"
-              placeholder="Search..."
-              onChange={(e) => {
-                handleSearchInput(e.target.value);
-              }}
-            />
+            <div className="sm:col-span-11 col-span-10">
+              <Input
+                size="w-full "
+                placeholder="Search..."
+                onChange={(e) => {
+                  handleSearchInput(e.target.value);
+                }}
+              />
+            </div>
 
             <Button
               type="button"

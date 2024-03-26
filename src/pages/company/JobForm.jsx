@@ -64,9 +64,9 @@ const JobForm = () => {
   const handleChange = (e) => {
     const { id, value, type } = e.target;
     if (type === "textarea") {
-      setJob({ ...job, ["description"]: value });
+      setJob({ ...job, ["description"]: value.trim() });
     } else {
-      setJob({ ...job, [id]: value });
+      setJob({ ...job, [id]: value.trim() });
     }
   };
 
