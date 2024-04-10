@@ -2,3 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    border-radius: 4px;
+    margin-right: 2px;
+    opacity: 0.8;
+    filter: invert(1.0);
+  }
+input[type="date"]::-webkit-calendar-picker-indicator:hover, 
+input[type="datetime-local"]::-webkit-calendar-picker-indicator:hover {
+  opacity: 1
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for Firefox */
+html {
+  scrollbar-width: none;
+}
+
+/* Hide scrollbar for IE, Edge and other browsers */
+html {
+  -ms-overflow-style: none; /* IE and Edge */
+}
