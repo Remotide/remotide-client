@@ -20,7 +20,7 @@ const EditTalentProfile = () => {
   const { isFetching: isTalentProfileFetching, data: talentProfile } =
     useFetchTalentProfile();
   const { isEditing, editTalentProfile } = useEditTalentProfile();
-
+  const [idType, setIdType] = useState("Passport");
   const [selectedSkills, setSelectedSkills] = useState([]);
   const [formData, setFormData] = useState({});
   useEffect(() => {
@@ -35,6 +35,9 @@ const EditTalentProfile = () => {
         profileImage: talentProfile?.profileImage || "",
         bookableCalendarLink: talentProfile?.bookableCalendarLink || "",
         availability: talentProfile?.availability || "",
+        idFile: talentProfile?.idFile || "",
+        idNo: talentProfile?.idNo || "",
+        attachments: talentProfile?.attachments || "",
       });
     }
   }, [talentProfile, isTalentProfileFetching]);
@@ -69,7 +72,22 @@ const EditTalentProfile = () => {
           ...formData,
           [id]: files[0],
         });
+      } else if (id === "attachment") {
+        const files = e.target.files;
+        setFormData({
+          ...formData,
+          [id]: files[0],
+        });
       } else if (id === "profileImage") {
+        const files = e.target.files;
+        if (files[0]) {
+          // console.log(profileImage);
+          setFormData({
+            ...formData,
+            [id]: files[0],
+          });
+        }
+      } else if (id === "idFile") {
         const files = e.target.files;
         if (files[0]) {
           // console.log(profileImage);
@@ -87,6 +105,7 @@ const EditTalentProfile = () => {
   };
 
   const handleSubmit = (e) => {
+    // TODO : Input the new input fields inside the form data
     e.preventDefault();
     const Profile = new FormData();
 
@@ -94,7 +113,7 @@ const EditTalentProfile = () => {
       return skill._id;
     });
     const originalObject = { ...formData, skills: skillsIds };
-    const keysToFilter = ["resume", "profileImage"];
+    const keysToFilter = ["resume", "profileImage", "idFile"];
 
     // Filtering out specified keys
     const filteredObject = Object.fromEntries(
@@ -118,12 +137,20 @@ const EditTalentProfile = () => {
         originalObject?.profileImage?.name
       );
     }
+    if (typeof originalObject?.idFile != "string") {
+      Profile.append(
+        "idFile",
+        originalObject?.idFile,
+        originalObject?.idFile?.name
+      );
+    }
     // for (let [key, value] of Profile.entries()) {
     //   console.log(`${key}: ${value}`);
     // }
     editTalentProfile({ Profile, navigate });
   };
-  const imageRef = useRef(null);
+  const profileImageRef = useRef(null);
+  const idFileRef = useRef(null);
   return (
     <div className="flex flex-col items-center w-full  font-sans font-medium">
       <div className="mt-8 w-full max-w-[80%]">
@@ -156,7 +183,7 @@ const EditTalentProfile = () => {
                     type="file"
                     accept="image/*"
                     className="hidden"
-                    ref={imageRef}
+                    ref={profileImageRef}
                     onChange={(e) => handleChange(e)}
                   />
 
@@ -167,7 +194,7 @@ const EditTalentProfile = () => {
                         : formData.profileImage
                     }
                     containerDims="h-[150px] w-[150px]"
-                    imageRef={imageRef}
+                    imageRef={profileImageRef}
                     borderType="rounded-full"
                   />
                 </div>
@@ -212,6 +239,93 @@ const EditTalentProfile = () => {
                 />
               </div>
 
+              <div className="flex flex-col w-2/5 items-start text-base font-bold leading-normal">
+                <p className="block my-2 sm:text-xl text-base font-bold text-gray-900">
+                  Select the type of Identification you want to upload
+                </p>
+                <div className="flex flex-grow items-center justify-between gap-x-6 rounded-xl border-2 border-solid border-zinc-100 bg-white p-4 backdrop-blur-[2px]">
+                  <Button
+                    type="button"
+                    style={`${
+                      idType == "Passport" ? "bg-indigo-500 " : "bg-white"
+                    } `}
+                    color={`${
+                      idType == "Passport" ? "text-white" : "text-black"
+                    }`}
+                    onClick={() => setIdType("Passport")}
+                  >
+                    Passport
+                  </Button>
+                  <Button
+                    type="button"
+                    style={`${
+                      idType == "National ID"
+                        ? "bg-indigo-500"
+                        : "bg-white text-black"
+                    }`}
+                    color={`${
+                      idType == "National ID" ? "text-white" : "text-black"
+                    }`}
+                    onClick={() => setIdType("National ID")}
+                  >
+                    National ID
+                  </Button>
+                  <Button
+                    type="button"
+                    style={`${
+                      idType == "License"
+                        ? "bg-indigo-500"
+                        : "bg-white text-black"
+                    }`}
+                    color={`${
+                      idType == "License" ? "text-white" : "text-black"
+                    }`}
+                    onClick={() => setIdType("License")}
+                  >
+                    License
+                  </Button>
+                </div>
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="idNo">Identification Number</Label>
+                <Input
+                  id="idNo"
+                  placeholder="Enter your Identification Serial Number"
+                  size="w-full"
+                  type="text"
+                  value={formData.idNo || ""}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="flex flex-col">
+                <Label
+                  className="mb-2 text-sm font-semibold text-primary"
+                  htmlFor="profileImage"
+                >
+                  Upload Identification Document Image (Passport,License or
+                  National Id)
+                </Label>
+
+                <input
+                  id="idFile"
+                  type="file"
+                  accept="image/*"
+                  className="hidden"
+                  ref={idFileRef}
+                  onChange={(e) => handleChange(e)}
+                />
+
+                <ImageUploader
+                  blobUrl={
+                    typeof formData?.idFile != "string"
+                      ? URL.createObjectURL(formData?.idFile)
+                      : formData?.idFile
+                  }
+                  containerDims="h-[150px] w-[150px]"
+                  imageRef={idFileRef}
+                  borderType="rounded-full"
+                />
+              </div>
               <div className="flex flex-1 flex-col space-y-2">
                 <Label htmlFor="skills">Skills</Label>
                 <DropDownSelect
@@ -224,6 +338,21 @@ const EditTalentProfile = () => {
                 />
               </div>
               <div className="space-y-4">
+                <div className="space-y-2">
+                  <Label htmlFor="attachment">Upload your Attachments</Label>
+                  <div className="max-w-xs w-full">
+                    <Input
+                      id="attachment"
+                      accept=".pdf"
+                      type="file"
+                      value={""}
+                      onChange={handleChange}
+                    />
+                    <Link to={formData.attachment || ""} target="_blank">
+                      Access Attachments
+                    </Link>
+                  </div>
+                </div>
                 <div className="space-y-2">
                   <Label htmlFor="resume">Upload your resume</Label>
                   <div className="max-w-xs w-full">

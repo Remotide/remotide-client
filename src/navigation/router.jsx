@@ -20,15 +20,26 @@ import {
   JobForm,
   Jobs,
   LegalCompliance,
+  CreateContract,
 } from "@/pages/company";
 
 import { ErrorPage } from "@/pages/error";
 
-import { ViewTalentProfile, EditTalentProfile } from "@/pages/talent";
+import {
+  ViewTalentProfile,
+  EditTalentProfile,
+  CreateInvoice,
+} from "@/pages/talent";
 
 import { LoginSignup, ForgotPassword, ResetPassword } from "@/pages/auth";
 
-import { UpdateUser } from "@/pages/shared";
+import {
+  UpdateUser,
+  Contracts,
+  ContractOverview,
+  InvoiceOverview,
+  Invoices,
+} from "@/pages/shared";
 
 import { Layout } from "@/pages/layout";
 
@@ -53,6 +64,10 @@ export const router = createBrowserRouter([
         element: <Layout />,
         children: [
           { path: "updateUser", element: <UpdateUser /> },
+          { path: "contracts", element: <Contracts /> },
+          { path: "invoices", element: <Invoices /> },
+          { path: "contract/:contractId", element: <ContractOverview /> },
+          { path: "invoice/:invoiceId", element: <InvoiceOverview /> },
           {
             path: "company",
             children: [
@@ -66,6 +81,7 @@ export const router = createBrowserRouter([
               { path: "editProfile", element: <EditCompanyProfile /> },
               { path: "legalCompliance", element: <LegalCompliance /> },
               { path: "displayTalent/:id/:title", element: <DisplayTalent /> },
+              { path: "createContract", element: <CreateContract /> },
             ],
           },
           {
@@ -77,6 +93,7 @@ export const router = createBrowserRouter([
               },
               { path: "profile", element: <ViewTalentProfile /> },
               { path: "editProfile", element: <EditTalentProfile /> },
+              { path: "createInvoice", element: <CreateInvoice /> },
             ],
           },
           {

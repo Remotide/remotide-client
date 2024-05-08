@@ -4,3 +4,4 @@ export { default as Jobs } from "./Jobs";
 export { default as LegalCompliance } from "./LegalCompliance";
 export { default as EditCompanyProfile  } from "./EditProfile"
 export { default as ViewCompanyProfile } from "./Profile"
+export { default as CreateContract  } from "./CreateContract"

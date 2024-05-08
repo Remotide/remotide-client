@@ -36,15 +36,11 @@ const ViewTalentProfile = () => {
           <div className="flex flex-col md:flex-row items-center justify-between space-x-4">
             <div className="flex flex-row items-center">
               <div className="flex-shrink-0">
-                {talentProfile?.profileImage ? (
-                  <ImageUploader
-                    blobUrl={talentProfile?.profileImage}
-                    containerDims="h-[96px] w-[96px]"
-                    borderType="rounded-full"
-                  />
-                ) : (
-                  <FaUserAlt size={96} />
-                )}
+                <ImageUploader
+                  blobUrl={talentProfile?.profileImage || "Invalid Link"}
+                  containerDims="h-[96px] w-[96px]"
+                  borderType="rounded-full"
+                />
               </div>
               <div className="space-y-1.5">
                 <h1 className="text-2xl font-extrabold">
@@ -110,7 +106,7 @@ const ViewTalentProfile = () => {
                 dangerouslySetInnerHTML={{ __html: talentProfile?.description }}
               />
             ) : (
-              <p>You havenot filled the description field.</p>
+              <p>You have not filled the description field.</p>
             )}
           </div>
         </div>
