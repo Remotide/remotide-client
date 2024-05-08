@@ -75,7 +75,7 @@ const Skills = () => {
           value={searchTerm}
           onChange={(event) => setSearchTerm(event.target.value.trim())}
         />
-        <div className="flex flex-row h-12 mt-5 items-center font-bold text-base md:text-3xl justify-between px-3 md:px-12 w-full bg-white">
+        <div className="flex flex-row h-20 mt-5 items-center font-bold text-base md:text-3xl justify-between px-3 md:px-12 w-full bg-white">
           <p>Skills</p>
           <Button size="14" onClick={openModal}>
             Create

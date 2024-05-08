@@ -342,3 +342,162 @@ export const packages = [
 export const admins= [
     "SuperAdmin","admin1","admin2","admin3","admin4"
 ]
+
+export const invoices=[
+  {
+     "_id": 1,
+     "invoiceName": "Invoice 1",
+     "companyId": 1,
+     "talentId": 1,
+     "contractId": 1,
+     "contractName": "Contract A",
+     "clientAddress": "123 Main Street, Anytown USA",
+     "amount": 1000.0,
+     "status": "fullyPaid",
+     "issueDate": "2023-04-01",
+     "dueDate": "2023-04-30"
+  },
+  {
+     "_id": 2,
+     "invoiceName": "Invoice 2",
+     "companyId": 2,
+     "talentId": 2,
+     "contractId": 2,
+     "contractName": "Contract B",
+     "clientAddress": "456 Elm Street, Anytown USA",
+     "amount": 2000.0,
+     "status": "unpaid",
+     "issueDate": "2023-04-02",
+     "dueDate": "2023-04-30"
+  },
+  {
+     "_id": 3,
+     "invoiceName": "Invoice 3",
+     "companyId": 3,
+     "talentId": 3,
+     "contractId": 3,
+     "contractName": "Contract C",
+     "clientAddress": "789 Oak Street, Anytown USA",
+     "amount": 3000.0,
+     "status": "unpaid",
+     "issueDate": "2023-04-03",
+     "dueDate": "2023-04-30"
+  },
+  {
+     "_id": 4,
+     "invoiceName": "Invoice 4",
+     "companyId": 4,
+     "talentId": 4,
+     "contractId": 4,
+     "contractName": "Contract D",
+     "clientAddress": "321 Pine Street, Anytown USA",
+     "amount": 4000.0,
+     "status": "partiallyPaid",
+     "issueDate": "2023-04-04",
+     "dueDate": "2023-04-30"
+  },
+  {
+     "_id": 5,
+     "invoiceName": "Invoice 5",
+     "companyId": 5,
+     "talentId": 5,
+     "contractId": 5,
+     "contractName": "Contract E",
+     "clientAddress": "654 Maple Street, Anytown USA",
+     "amount": 5000.0,
+     "status": "overdue",
+     "issueDate": "2023-04-05",
+     "dueDate": "2023-04-30"
+  },
+  {
+     "_id": 6,
+     "invoiceName": "Invoice 6",
+     "companyId": 6,
+     "talentId": 6,
+     "contractId": 6,
+     "contractName": "Contract F",
+     "clientAddress": "987 Cedar Street, Anytown USA",
+     "amount": 6000.0,
+     "status": "unpaid",
+     "issueDate": "2023-04-06",
+     "dueDate": "2023-04-30"
+  },
+  {
+     "_id": 7,
+     "invoiceName": "Invoice 7",
+     "companyId": 7,
+     "talentId": 7,
+     "contractId": 7,
+     "contractName": "Contract G",
+     "clientAddress": "147 Birch Street, Anytown USA",
+     "amount": 7000.0,
+     "status": "unpaid",
+     "issueDate": "2023-04-07",
+     "dueDate": "2023-04-30"
+  },
+  {
+     "_id": 8,
+     "invoiceName": "Invoice 8",
+     "companyId": 8,
+     "talentId": 8,
+     "contractId": 8,
+     "contractName": "Contract H",
+     "clientAddress": "258 Willow Street, Anytown USA",
+     "amount": 8000.0,
+     "status": "unpaid",
+     "issueDate": "2023-04-08",
+     "dueDate": "2023-04-30"
+  },
+  {
+     "_id": 9,
+     "invoiceName": "Invoice 9",
+     "companyId": 9,
+     "talentId": 9,
+     "contractId": 9,
+     "contractName": "Contract I",
+     "clientAddress": "369 Cherry Street, Anytown USA",
+     "amount": 9000.0,
+     "status": "unpaid",
+     "issueDate": "2023-04-09",
+     "dueDate": "2023-04-30"
+  },
+  {
+     "_id": 10,
+     "invoiceName": "Invoice 10",
+     "companyId": 10,
+     "talentId": 10,
+     "contractId": 10,
+     "contractName": "Contract J",
+     "clientAddress": "470 Chestnut Street, Anytown USA",
+     "amount": 10000.0,
+     "status": "unpaid",
+     "issueDate": "2023-04-10",
+     "dueDate": "2023-04-30"
+  },
+  {
+     "_id": 11,
+     "invoiceName": "Invoice 11",
+     "companyId": 11,
+     "talentId": 11,
+     "contractId": 11,
+     "contractName": "Contract K",
+     "clientAddress": "581 Walnut Street, Anytown USA",
+     "amount": 11000.0,
+     "status": "unpaid",
+     "issueDate": "2023-04-11",
+     "dueDate": "2023-04-30"
+  },
+  {
+     "_id": 12,
+     "invoiceName": "Invoice 12",
+     "companyId": 12,
+     "talentId": 12,
+     "contractId": 12,
+     "contractName": "Contract L",
+     "clientAddress": "692 Ash Street, Anytown USA",
+     "amount": 12000.0,
+     "status": "unpaid",
+     "issueDate": "2023-04-12",
+     "dueDate": "2023-04-30"
+  }
+ ]

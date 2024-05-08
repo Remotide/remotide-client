@@ -26,15 +26,11 @@ const ViewCompanyProfile = () => {
         <div className="container mx-auto px-4 py-8">
           <div className="flex items-center space-x-4">
             <div className="flex-shrink-0">
-              {companyProfile?.profileImage ? (
-                <ImageUploader
-                  blobUrl={companyProfile?.profileImage || ""}
-                  containerDims="h-[96px] w-[96px]"
-                  borderType="rounded-full"
-                />
-              ) : (
-                <FaUserAlt size={96} />
-              )}
+              <ImageUploader
+                blobUrl={companyProfile?.profileImage || ""}
+                containerDims="h-[96px] w-[96px]"
+                borderType="rounded-full"
+              />
             </div>
             <div className="space-y-1.5">
               <h1 className="text-2xl font-extrabold">

@@ -13,6 +13,8 @@ import {
   FaUserAlt,
   FaBriefcase,
   FaGavel,
+  FaFileContract,
+  FaFileInvoice,
 } from "react-icons/fa";
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -62,6 +64,22 @@ const Sidebar = (props) => {
           >
             <FaUserAlt /> <Link to="/talent/profile">Profile</Link>
           </Selection>
+          <Selection
+            background={backgroundPicker("contract")}
+            color={colorPicker("contract")}
+            padding="l"
+          >
+            <FaFileContract />
+            <Link to="/contracts">Contracts</Link>
+          </Selection>
+          <Selection
+            background={backgroundPicker("invoice")}
+            color={colorPicker("invoice")}
+            padding="l"
+          >
+            <FaFileInvoice />
+            <Link to="/invoices">Invoices</Link>
+          </Selection>
           {/* </div> */}
         </>
       ) : role == "company" ? (
@@ -100,6 +118,22 @@ const Sidebar = (props) => {
           >
             <FaGavel />
             <Link to="/company/legalCompliance">Legal Compliance</Link>
+          </Selection>
+          <Selection
+            background={backgroundPicker("contract")}
+            color={colorPicker("contract")}
+            padding="l"
+          >
+            <FaFileContract />
+            <Link to="/contracts">Contracts</Link>
+          </Selection>
+          <Selection
+            background={backgroundPicker("invoice")}
+            color={colorPicker("invoice")}
+            padding="l"
+          >
+            <FaFileInvoice />
+            <Link to="/invoices">Invoices</Link>
           </Selection>
         </>
       ) : role == "admin" || role == "superadmin" ? (
@@ -149,6 +183,14 @@ const Sidebar = (props) => {
           >
             <FaBriefcase />
             <Link to="/admin/allJobs">All Jobs</Link>
+          </Selection>
+          <Selection
+            background={backgroundPicker("contract")}
+            color={colorPicker("contract")}
+            padding="l"
+          >
+            <FaFileContract />
+            <Link to="/contracts">All Contracts</Link>
           </Selection>
           {role == "superadmin" && (
             <Selection
