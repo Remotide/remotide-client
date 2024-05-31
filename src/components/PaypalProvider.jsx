@@ -1,6 +1,6 @@
 import React from "react";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
-import { useCapturePaypalOrder, useCreatePaypalOrder } from "../actions";
+import { useCapturePaypalOrder, useCreatePaypalOrder } from "@/actions";
 import { useNavigate } from "react-router-dom";
 
 const PayPalProvider = ({ invoice }) => {

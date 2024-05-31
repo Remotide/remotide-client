@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Input, Button, Label } from "@/components";
-import { useFetchContracts, useCreateInvoice } from "../../actions";
+import { useFetchContracts, useCreateInvoice } from "@/actions";
 import { useNavigate } from "react-router-dom";
 const CreateInvoice = () => {
   const [invoiceDetails, setInvoiceDetails] = useState({});

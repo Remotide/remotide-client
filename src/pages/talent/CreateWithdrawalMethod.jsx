@@ -4,7 +4,7 @@ import {
   useCreateWithdrawalMethod,
   getUser,
   useFetchFlutterWaveBanks,
-} from "../../actions";
+} from "@/actions";
 
 import { useNavigate } from "react-router-dom";
 

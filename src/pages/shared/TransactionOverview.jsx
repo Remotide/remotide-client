@@ -1,12 +1,12 @@
 import React from "react";
 import { useParams, Link } from "react-router-dom";
-import { ConfirmationDialog, Loading } from "../../components";
+import { ConfirmationDialog, Loading } from "@/components";
 import {
   getUser,
   useFetchTransaction,
   useCreatePaypalPayout,
   useCreateFlutterWaveTransfer,
-} from "../../actions";
+} from "@/actions";
 import { format, parseISO } from "date-fns";
 import { useNavigate } from "react-router-dom";
 const TransactionOverview = () => {

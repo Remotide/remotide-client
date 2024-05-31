@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import {
   useFetchWithdrawalMethods,
   useDeleteWithdrawalMethod,
-} from "../../actions";
+} from "@/actions";
 
 const WithdrawalMethods = () => {
   const [methodFilter, setMethodFilter] = useState("");

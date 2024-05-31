@@ -9,7 +9,7 @@ import {
   useFetchAllSkills,
   useFetchTopTalent,
   getUser,
-} from "../../actions";
+} from "@/actions";
 import { InlineWidget, PopupButton } from "react-calendly";
 const DisplayTalent = () => {
   const { id, title } = useParams();
