@@ -37,7 +37,7 @@ const EditTalentProfile = () => {
         availability: talentProfile?.availability || "",
         idFile: talentProfile?.idFile || "",
         idNo: talentProfile?.idNo || "",
-        attachments: talentProfile?.attachments || "",
+        attachment: talentProfile?.attachment || "",
       });
     }
   }, [talentProfile, isTalentProfileFetching]);
@@ -113,7 +113,7 @@ const EditTalentProfile = () => {
       return skill._id;
     });
     const originalObject = { ...formData, skills: skillsIds };
-    const keysToFilter = ["resume", "profileImage", "idFile"];
+    const keysToFilter = ["resume", "profileImage", "idFile", "attachment"];
 
     // Filtering out specified keys
     const filteredObject = Object.fromEntries(
@@ -135,6 +135,13 @@ const EditTalentProfile = () => {
         "profileImage",
         originalObject?.profileImage,
         originalObject?.profileImage?.name
+      );
+    }
+    if (typeof originalObject?.attachment != "string") {
+      Profile.append(
+        "attachment",
+        originalObject?.attachment,
+        originalObject?.attachment?.name
       );
     }
     if (typeof originalObject?.idFile != "string") {

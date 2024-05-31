@@ -29,6 +29,8 @@ import {
   ViewTalentProfile,
   EditTalentProfile,
   CreateInvoice,
+  CreateWithdrawalMethod,
+  WithdrawalMethods,
 } from "@/pages/talent";
 
 import { LoginSignup, ForgotPassword, ResetPassword } from "@/pages/auth";
@@ -39,6 +41,8 @@ import {
   ContractOverview,
   InvoiceOverview,
   Invoices,
+  Transaction,
+  TransactionOverview,
 } from "@/pages/shared";
 
 import { Layout } from "@/pages/layout";
@@ -66,8 +70,13 @@ export const router = createBrowserRouter([
           { path: "updateUser", element: <UpdateUser /> },
           { path: "contracts", element: <Contracts /> },
           { path: "invoices", element: <Invoices /> },
+          { path: "transaction", element: <Transaction /> },
           { path: "contract/:contractId", element: <ContractOverview /> },
           { path: "invoice/:invoiceId", element: <InvoiceOverview /> },
+          {
+            path: "transaction/:transactionId",
+            element: <TransactionOverview />,
+          },
           {
             path: "company",
             children: [
@@ -94,6 +103,14 @@ export const router = createBrowserRouter([
               { path: "profile", element: <ViewTalentProfile /> },
               { path: "editProfile", element: <EditTalentProfile /> },
               { path: "createInvoice", element: <CreateInvoice /> },
+              {
+                path: "createWithdrawalMethod",
+                element: <CreateWithdrawalMethod />,
+              },
+              {
+                path: "withdrawalMethods",
+                element: <WithdrawalMethods />,
+              },
             ],
           },
           {

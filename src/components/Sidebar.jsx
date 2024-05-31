@@ -15,6 +15,8 @@ import {
   FaGavel,
   FaFileContract,
   FaFileInvoice,
+  FaMoneyBillWave,
+  FaHandHoldingUsd,
 } from "react-icons/fa";
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -80,6 +82,22 @@ const Sidebar = (props) => {
             <FaFileInvoice />
             <Link to="/invoices">Invoices</Link>
           </Selection>
+          <Selection
+            background={backgroundPicker("withdrawal")}
+            color={colorPicker("withdrawal")}
+            padding="l"
+          >
+            <FaMoneyBillWave />
+            <Link to="/talent/withdrawalMethods">Withdrawal Method</Link>
+          </Selection>
+          <Selection
+            background={backgroundPicker("transaction")}
+            color={colorPicker("transaction")}
+            padding="l"
+          >
+            <FaHandHoldingUsd />
+            <Link to="/transaction">Transactions</Link>
+          </Selection>
           {/* </div> */}
         </>
       ) : role == "company" ? (
@@ -134,6 +152,14 @@ const Sidebar = (props) => {
           >
             <FaFileInvoice />
             <Link to="/invoices">Invoices</Link>
+          </Selection>
+          <Selection
+            background={backgroundPicker("transaction")}
+            color={colorPicker("transaction")}
+            padding="l"
+          >
+            <FaHandHoldingUsd />
+            <Link to="/transaction">Transactions</Link>
           </Selection>
         </>
       ) : role == "admin" || role == "superadmin" ? (
@@ -225,6 +251,14 @@ const Sidebar = (props) => {
           >
             <FaDollarSign />
             <Link to="/admin/packages">Packages</Link>
+          </Selection>
+          <Selection
+            background={backgroundPicker("transaction")}
+            color={colorPicker("transaction")}
+            padding="l"
+          >
+            <FaHandHoldingUsd />
+            <Link to="/transaction">Transactions</Link>
           </Selection>
           {/* </div> */}
         </>
