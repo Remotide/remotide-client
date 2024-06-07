@@ -406,7 +406,7 @@ const EditTalentProfile = () => {
                   </Label>
                 </div>
                 <Button size="w-full" type="submit" disabled={isEditing}>
-                  {isEditing ? "Saving Changes" : "Edit Profile"}
+                  {isEditing ? "Saving Changes" : "Save Profile"}
                 </Button>
               </div>
             </form>
