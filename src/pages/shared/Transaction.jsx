@@ -4,6 +4,7 @@ import { FaCalendar } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { format, parseISO } from "date-fns";
 import { useFetchTransactions } from "@/actions";
+import { truncate } from "@/utils";
 
 const Transaction = () => {
   const navigate = useNavigate();
@@ -25,14 +26,12 @@ const Transaction = () => {
       let filtered = transactions;
       if (searchTerm) {
         filtered = transactions.filter((transaction) =>
-          transaction.invoiceName
-            .toLowerCase()
-            .includes(searchTerm.toLowerCase())
+          transaction.name.toLowerCase().includes(searchTerm.toLowerCase())
         );
       }
       if (statusFilter) {
         filtered = filtered.filter(
-          (transaction) => transaction.withdrawalStatus === statusFilter
+          (transaction) => transaction.transactionType === statusFilter
         );
       }
       if (startDate && endDate) {
@@ -76,9 +75,9 @@ const Transaction = () => {
           onChange={(event) => setStatusFilter(event.target.value)}
           className="mb-2 p-2.5 w-48 mx-20 bg-slate-200 border-blue-300 rounded-lg sm:text-2xl text-base focus:border-blue-700 focus:ring-blue-700"
         >
-          <option value="">All Statuses</option>
-          <option value="Withdrawn">WithDrawn</option>
-          <option value="Not Withdrawn">Not WithDrawn</option>
+          <option value="">All Types</option>
+          <option value="Payment">Payment</option>
+          <option value="Withdrawal">Withdrawal</option>
         </select>
         <div className="dropdown dropdown-bottom dropdown-end">
           <div
@@ -131,7 +130,7 @@ const Transaction = () => {
           <thead className="text-gray-400 uppercase bg-gray-50">
             <tr>
               <th scope="col" className="px-5 py-3 text-sm md:text-xl">
-                Invoice Name
+                Name
               </th>
               <th scope="col" className="px-5 py-3 text-base md:text-xl">
                 Amount
@@ -140,7 +139,7 @@ const Transaction = () => {
                 scope="col"
                 className="hidden sm:table-cell px-5 py-3 text-sm md:text-xl"
               >
-                Status
+                Type
               </th>
               <th
                 scope="col"
@@ -160,7 +159,7 @@ const Transaction = () => {
                   className="px-4 sm:px-5 py-4 text-sm md:text-xl  text-black hover:underline"
                   onClick={() => navigate(`/transaction/${transaction._id}`)}
                 >
-                  {transaction.invoiceName}
+                  {truncate(transaction.name, 50)}
                 </td>
                 <td
                   scope="row"
@@ -169,7 +168,7 @@ const Transaction = () => {
                   {transaction.amount}
                 </td>
                 <td className="hidden sm:table-cell px-4 sm:px-5 py-4 text-sm md:text-xl">
-                  {transaction.withdrawalStatus}
+                  {transaction.transactionType}
                 </td>
                 <td className="hidden sm:table-cell px-4 sm:px-5 py-4 text-sm md:text-xl">
                   {format(

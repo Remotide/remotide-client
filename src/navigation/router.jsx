@@ -31,6 +31,7 @@ import {
   CreateInvoice,
   CreateWithdrawalMethod,
   WithdrawalMethods,
+  Balance,
 } from "@/pages/talent";
 
 import { LoginSignup, ForgotPassword, ResetPassword } from "@/pages/auth";
@@ -100,7 +101,7 @@ export const router = createBrowserRouter([
                 index: true,
                 element: <Navigate to="/talent/profile" replace />,
               },
-              { path: "profile", element: <ViewTalentProfile /> },
+              { path: "profile/:talentId?", element: <ViewTalentProfile /> },
               { path: "editProfile", element: <EditTalentProfile /> },
               { path: "createInvoice", element: <CreateInvoice /> },
               {
@@ -110,6 +111,10 @@ export const router = createBrowserRouter([
               {
                 path: "withdrawalMethods",
                 element: <WithdrawalMethods />,
+              },
+              {
+                path: "balance",
+                element: <Balance />,
               },
             ],
           },

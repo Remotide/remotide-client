@@ -17,6 +17,7 @@ import {
   FaFileInvoice,
   FaMoneyBillWave,
   FaHandHoldingUsd,
+  FaPiggyBank,
 } from "react-icons/fa";
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -97,6 +98,14 @@ const Sidebar = (props) => {
           >
             <FaHandHoldingUsd />
             <Link to="/transaction">Transactions</Link>
+          </Selection>
+          <Selection
+            background={backgroundPicker("balance")}
+            color={colorPicker("balance")}
+            padding="l"
+          >
+            <FaPiggyBank />
+            <Link to="talent/balance">Balance</Link>
           </Selection>
           {/* </div> */}
         </>

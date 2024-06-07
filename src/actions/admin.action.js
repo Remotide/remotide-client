@@ -5,6 +5,7 @@ import { getUser } from "./user.action";
 
 
 const baseURL="/admin";
+const notify = useNotification();
 export const useFetchStats = () => {
   const { isPending, isSuccess, isError, isFetching, error, data } = useQuery({
     queryKey:["stats"],

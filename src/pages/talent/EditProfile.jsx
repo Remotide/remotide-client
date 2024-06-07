@@ -173,7 +173,12 @@ const EditTalentProfile = () => {
               <div className="space-y-2">
                 <h1 className="text-3xl font-bold">Create your profile</h1>
                 <p className="text-gray-500 dark:text-gray-400">
-                  Let's get started with some basic information
+                  Let's get started with some basic information.
+                </p>
+                <p className="text-red-500 text-2xl py-10">
+                  Please ensure that you provide a functioning Calendly booking
+                  link; otherwise, employers will not be able to view your
+                  profile !
                 </p>
               </div>
               <div className="space-y-2">
@@ -386,6 +391,7 @@ const EditTalentProfile = () => {
                     type="text"
                     value={formData.bookableCalendarLink || ""}
                     onChange={handleChange}
+                    required
                   />
                 </div>
                 <div className="flex items-center space-x-2">

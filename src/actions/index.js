@@ -93,3 +93,7 @@ export {
   useCreateFlutterWavePayment,
   useCreateFlutterWaveTransfer
 } from "./transaction.action";
+
+export {
+  useFetchBalance
+} from "./balance.action"

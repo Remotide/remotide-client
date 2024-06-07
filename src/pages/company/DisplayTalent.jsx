@@ -76,6 +76,7 @@ const DisplayTalent = () => {
               payment={job?.payment}
               skills={selectedSkills}
               description={job?.description}
+              violatesPolicy={job?.violating_policies}
             />
           )}
         </div>
@@ -127,7 +128,9 @@ const DisplayTalent = () => {
                                   </div>
                                   <div className="ml-4">
                                     <h2 className="text-2xl font-bold">
-                                      <Link href={talent.profileLink}>
+                                      <Link
+                                        to={`/talent/profile/${talent.userId}`}
+                                      >
                                         {talent.name}
                                       </Link>
                                     </h2>
@@ -229,8 +232,12 @@ const DisplayTalent = () => {
                           </div>
                         );
                       })
-                  ) : (
+                  ) : isTopTalentsFetching ? (
                     <Loading />
+                  ) : (
+                    <p className="text-black font-medium text-center py-16 text-3xl">
+                      No Talent fullfilling the requirements was found.
+                    </p>
                   )}
                 </div>
               </div>

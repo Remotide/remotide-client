@@ -4,9 +4,15 @@ import {useNotification} from "@/hooks";
 import { getUser } from "./user.action";
 const baseURL="/users/talent/profile"
 
-export const useFetchTalentProfile = () => {
+export const useFetchTalentProfile = (talentId) => {
     const user = getUser();
-    const { _id:userId } = user || {};
+    let userId
+    if (talentId) {
+      userId = talentId
+    } else {
+      const { _id } = user || {};
+      userId = _id
+    }
     const { isPending, isSuccess, isError, isFetching, error, data } = useQuery({
       queryKey: ["talent/profile", userId ],
       queryFn: async () => {
