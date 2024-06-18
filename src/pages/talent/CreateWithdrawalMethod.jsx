@@ -106,17 +106,14 @@ const FlutterWavePaymentDetailsForm = ({
           id="account_country"
           className="mb-2 p-2.5 w-full bg-slate-50 border-blue-300 rounded-lg sm:text-2xl text-base focus:border-blue-700 focus:ring-blue-700"
           required={true}
+          onChange={(e) => {
+            setSelectedCountry(e.target.value);
+            handleChange(e, "account_country");
+          }}
         >
           {Object.entries(countries).map(([code, name]) => {
             return (
-              <option
-                value={code}
-                selected={selectedCountry === code}
-                onClick={(e) => {
-                  setSelectedCountry(code);
-                  handleChange(e, "account_country");
-                }}
-              >
+              <option value={code} selected={selectedCountry === code}>
                 {name}
               </option>
             );
@@ -124,14 +121,13 @@ const FlutterWavePaymentDetailsForm = ({
         </select>
       </div>
       <div>
-        <Label htmlFor="account_bank">
-          Select the country of your bank account
-        </Label>
+        <Label htmlFor="account_bank">Select you bank</Label>
         {!isFetching && (
           <select
             id="account_bank"
             className="mb-2 p-2.5 w-full bg-slate-50 border-blue-300 rounded-lg sm:text-2xl text-base focus:border-blue-700 focus:ring-blue-700"
             required={true}
+            onChange={(e) => handleChange(e, "account_bank")}
           >
             {banks.map((bank) => {
               return (
