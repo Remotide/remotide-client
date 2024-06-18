@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { Input, Label, Button, Loading } from "@/components";
-import { FaPlus, FaCalendar } from "react-icons/fa";
-import { getUser } from "@/actions";
-import { Link, useNavigate } from "react-router-dom";
-import { format } from "date-fns";
-import { useFetchInvoices } from "@/actions";
-const Invoices = () => {
-  const user = getUser();
+import { Input, Label, Loading } from "@/components";
+import { FaCalendar } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+import { format, parseISO } from "date-fns";
+import { useFetchTransactions } from "@/actions";
+import { truncate } from "@/utils";
+
+const Transaction = () => {
   const navigate = useNavigate();
   const today = new Date();
-  const { data: invoices, isFetching: isAllInvoicesFetching } =
-    useFetchInvoices();
+  const { data: transactions, isFetching: isAllTransationsFetching } =
+    useFetchTransactions();
   const [startDate, setStartDate] = useState(
     new Date(today.getFullYear() - 5, today.getMonth(), today.getDate())
   );
@@ -19,44 +19,46 @@ const Invoices = () => {
   );
   const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState("");
-  const [filteredInvoices, setFilteredInvoices] = useState(invoices);
+  const [filteredTransactions, setFilteredTransactions] =
+    useState(transactions);
   useEffect(() => {
-    if (invoices && Object.keys(invoices).length != 0) {
-      let filtered = invoices;
+    if (transactions && Object.keys(transactions).length != 0) {
+      let filtered = transactions;
       if (searchTerm) {
-        filtered = invoices.filter((invoice) =>
-          invoice.invoiceName.toLowerCase().includes(searchTerm.toLowerCase())
+        filtered = transactions.filter((transaction) =>
+          transaction.name.toLowerCase().includes(searchTerm.toLowerCase())
         );
       }
       if (statusFilter) {
         filtered = filtered.filter(
-          (invoice) => invoice.status === statusFilter
+          (transaction) => transaction.transactionType === statusFilter
         );
       }
       if (startDate && endDate) {
         filtered = filtered.filter(
-          (invoice) =>
-            new Date(invoice.issueDate) >= new Date(startDate) &&
-            new Date(invoice.issueDate) <= new Date(endDate)
+          (transaction) =>
+            new Date(transaction.createdAt) >= new Date(startDate) &&
+            new Date(transaction.createdAt) <= new Date(endDate)
         );
       } else if (startDate) {
         filtered = filtered.filter(
-          (invoice) => new Date(invoice.issueDate) >= new Date(startDate)
+          (transaction) =>
+            new Date(transaction.createdAt) >= new Date(startDate)
         );
       } else if (endDate) {
         filtered = filtered.filter(
-          (invoice) => new Date(invoice.issueDate) <= new Date(endDate)
+          (transaction) => new Date(transaction.createdAt) <= new Date(endDate)
         );
       }
 
-      setFilteredInvoices(filtered);
+      setFilteredTransactions(filtered);
     }
-  }, [searchTerm, startDate, endDate, invoices, statusFilter]);
+  }, [searchTerm, startDate, endDate, transactions, statusFilter]);
 
   return (
     <div className="flex flex-col w-full items-center justify-center overflow-x-auto shadow-lg sm:rounded-lg mt-8 p-4 sm:p-16">
       <h1 className="mb-4 text-4xl font-bold text-gray-900">
-        Invoices Associated with You
+        Transactions Associated with You
       </h1>
 
       <div className="flex flex-row w-full justify-between items-center">
@@ -64,7 +66,7 @@ const Invoices = () => {
           type="text"
           size="w-full"
           style="col-span-8"
-          placeholder="Search for Invoice by name"
+          placeholder="Search for Transaction by Invoice name"
           value={searchTerm}
           onChange={(event) => setSearchTerm(event.target.value)}
         />
@@ -73,11 +75,9 @@ const Invoices = () => {
           onChange={(event) => setStatusFilter(event.target.value)}
           className="mb-2 p-2.5 w-48 mx-20 bg-slate-200 border-blue-300 rounded-lg sm:text-2xl text-base focus:border-blue-700 focus:ring-blue-700"
         >
-          <option value="">All Statuses</option>
-          <option value="Unpaid">Unpaid</option>
-          <option value="Fully Paid">Fully Paid</option>
-          <option value="Partially Paid">Partially Paid</option>
-          <option value="Overdue">Overdue</option>
+          <option value="">All Types</option>
+          <option value="Payment">Payment</option>
+          <option value="Withdrawal">Withdrawal</option>
         </select>
         <div className="dropdown dropdown-bottom dropdown-end">
           <div
@@ -92,7 +92,7 @@ const Invoices = () => {
             className="dropdown-content bg-gray-200 rounded-lg flex flex-col p-6"
           >
             <p className="leading-tight text-xl font-medium mb-4">
-              Invoice Issue Date
+              Transaction Date
             </p>
             <div className="flex flex-row space-x-6">
               <Label htmlFor="startDate">Start Date</Label>
@@ -120,66 +120,61 @@ const Invoices = () => {
       </div>
 
       <div className="flex flex-row h-20 mt-5 items-center font-bold text-base md:text-3xl justify-between px-3 md:px-12 w-full bg-white">
-        <p>Invoices</p>
-        {user.role == "talent" && (
-          <Button size="14">
-            <FaPlus />
-            <Link to="/talent/createInvoice">Create</Link>
-          </Button>
-        )}
+        <p>Transactions</p>
       </div>
       {/*TODO: fetching check to be placed here */}
-      {isAllInvoicesFetching ? (
+      {isAllTransationsFetching ? (
         <Loading />
       ) : (
         <table className="w-full text-left rtl:text-right text-gray-500">
           <thead className="text-gray-400 uppercase bg-gray-50">
             <tr>
               <th scope="col" className="px-5 py-3 text-sm md:text-xl">
-                Invoice Name
+                Name
               </th>
               <th scope="col" className="px-5 py-3 text-base md:text-xl">
-                {user.role == "talent" ? "Company" : "Talent"}
-              </th>
-              <th
-                scope="col"
-                className="hidden sm:table-cell px-5 py-3 text-sm md:text-xl"
-              >
-                Contract Name
-              </th>
-              <th
-                scope="col"
-                className="hidden sm:table-cell px-5 py-3 text-sm md:text-xl"
-              >
                 Amount
+              </th>
+              <th
+                scope="col"
+                className="hidden sm:table-cell px-5 py-3 text-sm md:text-xl"
+              >
+                Type
+              </th>
+              <th
+                scope="col"
+                className="hidden sm:table-cell px-5 py-3 text-sm md:text-xl"
+              >
+                Date
               </th>
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200 hover:shadow-lg">
-            {filteredInvoices?.map((invoice, index) => (
+            {filteredTransactions?.map((transaction, index) => (
               <tr
                 key={index}
                 className="odd:bg-white even:bg-gray-50  border-b"
               >
                 <td
                   className="px-4 sm:px-5 py-4 text-sm md:text-xl  text-black hover:underline"
-                  onClick={() => navigate(`/invoice/${invoice._id}`)}
+                  onClick={() => navigate(`/transaction/${transaction._id}`)}
                 >
-                  {invoice.invoiceName}
+                  {truncate(transaction.name, 50)}
                 </td>
                 <td
                   scope="row"
                   className="px-4 sm:px-5 py-4 font-medium whitespace-nowrap text-base md:text-xl"
                 >
-                  {user.role == "talent"
-                    ? invoice.company.name
-                    : invoice.talent.name}
+                  {transaction.amount}
                 </td>
                 <td className="hidden sm:table-cell px-4 sm:px-5 py-4 text-sm md:text-xl">
-                  {invoice.contract.name}
+                  {transaction.transactionType}
                 </td>
                 <td className="hidden sm:table-cell px-4 sm:px-5 py-4 text-sm md:text-xl">
-                  {invoice.amount}
+                  {format(
+                    parseISO(transaction.createdAt),
+                    "dd MMMM, yyyy h:mm a"
+                  )}
                 </td>
               </tr>
             ))}
@@ -190,4 +185,4 @@ const Invoices = () => {
   );
 };
 
-export default Invoices;
+export default Transaction;

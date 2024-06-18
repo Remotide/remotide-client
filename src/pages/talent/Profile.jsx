@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { ImageUploader, Loading, DisplaySkill, Button } from "@/components";
 import { FaMap, FaUserAlt } from "react-icons/fa";
-import { useFetchTalentProfile, useFetchAllSkills } from "@/actions";
-import { Link } from "react-router-dom";
+import { useFetchTalentProfile, useFetchAllSkills, getUser } from "@/actions";
+import { useParams, Link } from "react-router-dom";
 const ViewTalentProfile = () => {
+  const user = getUser();
+  const { talentId } = useParams();
   const { isFetching: isTalentProfileFetching, data: talentProfile } =
-    useFetchTalentProfile();
+    useFetchTalentProfile(talentId);
   const { isFetching: isSkillsFetching, skills } = useFetchAllSkills();
   const [selectedSkills, setSelectedSkills] = useState([]);
 
@@ -24,9 +26,11 @@ const ViewTalentProfile = () => {
           <p className="text-gray-500 text-2xl dark:text-gray-400">
             Here's your basic information.
           </p>
-          <Button size="h-14 ">
-            <Link to="/talent/editProfile">Edit Profile</Link>
-          </Button>
+          {(!talentId || talentId === user._id) && (
+            <Button size="h-14 ">
+              <Link to="/talent/editProfile">Edit Profile</Link>
+            </Button>
+          )}
         </div>
       </div>
       {isTalentProfileFetching ? (

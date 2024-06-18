@@ -17,7 +17,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'https://remotide.onrender.com/api',
+        target: 'http://localhost:3000/api',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, '')
       }

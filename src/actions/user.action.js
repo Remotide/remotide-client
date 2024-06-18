@@ -47,12 +47,12 @@ function useUserActions() {
         variant: "success",
         description: "Logged in Successfully",
       });
-    } catch (e) {
-      // console.log(e)
+    } catch (error) {
+      // console.log(error)
       notify({
         title: "Error",
         variant: "error",
-        description: "Log in failed",
+        description: error.response.data.message,
       });
     }  
   }
@@ -76,11 +76,11 @@ function useUserActions() {
         description: "Registered Successfully.",
       });
     } catch (error) {
-      // console.log(error)
+      console.log(error)
       notify({
         title: "Error",
         variant: "error",
-        description: "Registration Failed",
+        description: error.response.data.message,
       });
     }
   }

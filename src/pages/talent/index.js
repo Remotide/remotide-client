@@ -1,3 +1,6 @@
 export { default as ViewTalentProfile } from "./Profile"
 export { default as EditTalentProfile } from "./EditProfile"
 export { default as CreateInvoice} from "./CreateInvoice"
+export { default as CreateWithdrawalMethod} from "./CreateWithdrawalMethod"
+export { default as WithdrawalMethods } from "./WithdrawalMethods"
+export { default as Balance } from "./Balance"

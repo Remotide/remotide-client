@@ -37,7 +37,7 @@ const EditTalentProfile = () => {
         availability: talentProfile?.availability || "",
         idFile: talentProfile?.idFile || "",
         idNo: talentProfile?.idNo || "",
-        attachments: talentProfile?.attachments || "",
+        attachment: talentProfile?.attachment || "",
       });
     }
   }, [talentProfile, isTalentProfileFetching]);
@@ -113,7 +113,7 @@ const EditTalentProfile = () => {
       return skill._id;
     });
     const originalObject = { ...formData, skills: skillsIds };
-    const keysToFilter = ["resume", "profileImage", "idFile"];
+    const keysToFilter = ["resume", "profileImage", "idFile", "attachment"];
 
     // Filtering out specified keys
     const filteredObject = Object.fromEntries(
@@ -135,6 +135,13 @@ const EditTalentProfile = () => {
         "profileImage",
         originalObject?.profileImage,
         originalObject?.profileImage?.name
+      );
+    }
+    if (typeof originalObject?.attachment != "string") {
+      Profile.append(
+        "attachment",
+        originalObject?.attachment,
+        originalObject?.attachment?.name
       );
     }
     if (typeof originalObject?.idFile != "string") {
@@ -166,7 +173,12 @@ const EditTalentProfile = () => {
               <div className="space-y-2">
                 <h1 className="text-3xl font-bold">Create your profile</h1>
                 <p className="text-gray-500 dark:text-gray-400">
-                  Let's get started with some basic information
+                  Let's get started with some basic information.
+                </p>
+                <p className="text-red-500 text-2xl py-10">
+                  Please ensure that you provide a functioning Calendly booking
+                  link; otherwise, employers will not be able to view your
+                  profile !
                 </p>
               </div>
               <div className="space-y-2">
@@ -379,6 +391,7 @@ const EditTalentProfile = () => {
                     type="text"
                     value={formData.bookableCalendarLink || ""}
                     onChange={handleChange}
+                    required
                   />
                 </div>
                 <div className="flex items-center space-x-2">
@@ -393,7 +406,7 @@ const EditTalentProfile = () => {
                   </Label>
                 </div>
                 <Button size="w-full" type="submit" disabled={isEditing}>
-                  {isEditing ? "Saving Changes" : "Edit Profile"}
+                  {isEditing ? "Saving Changes" : "Save Profile"}
                 </Button>
               </div>
             </form>

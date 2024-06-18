@@ -1,7 +1,7 @@
 import React from "react";
 import DisplaySkill from "./DisplaySkill";
 const JobDetails = (props) => {
-  const { title, payment, skills, description } = props;
+  const { title, payment, skills, description, violatesPolicy } = props;
   return (
     <div className="w-full min-h-screen overflow-y-auto py-6 space-y-2">
       <div className="container px-4 flex flex-col space-y-2">
@@ -9,6 +9,11 @@ const JobDetails = (props) => {
           <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl xl:text-5xl">
             {title}
           </h1>
+          {violatesPolicy && (
+            <div className="text-red-500 font-extrabold text-3xl">
+              This job violates our policy
+            </div>
+          )}
           <div className="flex items-center space-x-2">
             <span className="text-2xl text-gray-500">
               <p className="text-2xl text-black inline-block">Payment: </p>{" "}

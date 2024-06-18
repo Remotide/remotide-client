@@ -3,7 +3,7 @@ import { axiosService } from "@/helpers";
 import {useNotification} from "@/hooks";
 import { fetcher } from "@/helpers";
 
-const baseURL="/invoices";
+const baseURL="/invoice";
 
 export const useFetchInvoices = () => {
   const { isPending, isSuccess, isError, isFetching, error, data } = useQuery({
