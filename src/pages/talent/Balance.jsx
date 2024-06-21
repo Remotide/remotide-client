@@ -94,7 +94,7 @@ const Balance = () => {
                       >
                         <div className="text-gray-500">{key}</div>
                         <div className="text-2xl font-semibold text-gray-900">
-                          {value}
+                          {Number(value).toFixed(2)}
                         </div>
                       </div>
                     );
@@ -176,8 +176,19 @@ const Balance = () => {
                         <ConfirmationDialog
                           label={`Withdraw with ${withdrawalDetails.paymentMethod}`}
                           description={`Are you sure you want to withdraw ${withdrawalDetails.amount} ${withdrawalDetails.currency} using ${withdrawalDetails.paymentMethod}?`}
-                          title="Withdraw Money"
+                          title={
+                            !isCreatingFlutterWaveTransfer &&
+                            !isCreatingPaypalPayout
+                              ? "Withdraw Money"
+                              : isCreatingPaypalPayout
+                              ? "Creating Paypal Payout..."
+                              : "Creating FlutterWave Transfer..."
+                          }
                           onConfirm={() => handleWithdrawal()}
+                          disabled={
+                            isCreatingFlutterWaveTransfer ||
+                            isCreatingPaypalPayout
+                          }
                         />
                       )}
                   </div>

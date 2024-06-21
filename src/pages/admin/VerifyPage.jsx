@@ -86,7 +86,19 @@ const VerifyPage = () => {
                       </Button> */}
                         <ConfirmationDialog
                           label="Verify Talent"
-                          description={`Are you sure you want to activate user with name '${talent.name}' and email '${talent.email}' ?`}
+                          description={
+                            <p>
+                              Are you sure you want to activate user with name{" "}
+                              <span className="text-blue-500">
+                                {talent.name}
+                              </span>{" "}
+                              and email{" "}
+                              <span className="text-blue-500">
+                                {talent.email}
+                              </span>{" "}
+                              ?
+                            </p>
+                          }
                           title={
                             <>
                               <FaCheck className="w-4 h-4" /> Verify
@@ -135,7 +147,19 @@ const VerifyPage = () => {
                       </Button> */}
                         <ConfirmationDialog
                           label="Verify Company"
-                          description={`Are you sure you want to activate user with name '${company.name}' and email '${company.email}' ?`}
+                          description={
+                            <p>
+                              Are you sure you want to activate user with name{" "}
+                              <span className="text-blue-500">
+                                {company.name}
+                              </span>{" "}
+                              and email{" "}
+                              <span className="text-blue-500">
+                                {company.email}
+                              </span>{" "}
+                              ?
+                            </p>
+                          }
                           title={
                             <>
                               <FaCheck className="w-4 h-4" /> Verify

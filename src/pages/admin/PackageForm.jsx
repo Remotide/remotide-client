@@ -8,17 +8,17 @@ const PackageForm = () => {
 
   const { packageId } = useParams();
   const status = packageId ? "Edit" : "Create";
-  var postPackage, isLoading;
+  var postPackage, isSubmitting;
 
   const { editPackage, isEditing } = useEditPackage();
   const { createPackage, isCreating } = useCreatePackage();
 
   if (status == "Create") {
     postPackage = createPackage;
-    isLoading = isCreating;
+    isSubmitting = isCreating;
   } else {
     postPackage = editPackage;
-    isLoading = isEditing;
+    isSubmitting = isEditing;
   }
 
   const { data: packageFetched } = useFetchPackage(packageId);
@@ -175,8 +175,12 @@ const PackageForm = () => {
 
             <div className="mt-6">
               <span className="flex flex-grow items-center justify-center w-full rounded-md shadow-sm">
-                <Button size="w-full" type="submit" disabled={isLoading}>
-                  Submit
+                <Button size="w-full" type="submit" disabled={isSubmitting}>
+                  {!isSubmitting
+                    ? status
+                    : status == "Create"
+                    ? "Creating Package"
+                    : "Saving Changes"}
                 </Button>
               </span>
             </div>

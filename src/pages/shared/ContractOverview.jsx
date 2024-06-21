@@ -18,6 +18,40 @@ import {
 import { useReactToPrint } from "react-to-print";
 import { useNavigate } from "react-router-dom";
 import { format, parseISO } from "date-fns";
+
+const TopHeader = ({ name }) => {
+  return (
+    <h2 className="text-center text-4xl text-gray-700 font-semibold mb-2">
+      {name}
+    </h2>
+  );
+};
+
+const TextCard = ({ name, children }) => {
+  return (
+    <p className="font-semibold text-2xl text-black">
+      {children} {name}
+    </p>
+  );
+};
+
+const SignatureCard = ({ UserType, name, date, location }) => {
+  return (
+    <div className="bg-gray-100 p-6 rounded-lg shadow-md">
+      <p className="text-2xl font-bold mb-2 text-center">{UserType}</p>
+      <div className="text-lg font-semibold">{name}</div>
+      <div className="text-gray-500">{date}</div>
+      <div className="mt-2">
+        <div className="text-lg font-semibold">{location}</div>
+      </div>
+    </div>
+  );
+};
+
+const TextCardTitle = ({ name }) => {
+  return <span className="text-gray-600">{name}</span>;
+};
+
 const ContractOverview = () => {
   const { contractId } = useParams();
   const user = getUser();
@@ -103,28 +137,22 @@ const ContractOverview = () => {
                 Contract Information
               </p>
               <div className="border rounded-lg p-4">
-                <h2 className="text-center text-4xl text-gray-700 font-semibold mb-2">
-                  Company and Job Details
-                </h2>
+                <TopHeader name="Company and Job Details" />
                 <div className="grid gap-4">
-                  <p className="font-semibold text-2xl text-black">
-                    <span className="text-gray-600">Contract Type:</span>{" "}
-                    {contract.contractType}
-                  </p>
-                  <p className="font-semibold text-2xl text-black">
-                    <span className="text-gray-600">Contract Status:</span>{" "}
-                    {contract.status}
-                  </p>
-                  <p className="font-semibold text-2xl text-black">
-                    <span className="text-gray-600">Contract Name:</span>{" "}
-                    {contract.contractName}
-                  </p>
-                  <p className="font-semibold text-2xl text-black">
-                    <span className="text-gray-600">Registration Address:</span>{" "}
-                    {contract.registrationAddress}
-                  </p>
-                  <div className="font-semibold text-2xl text-gray-800">
-                    <span className="text-gray-600">Job Responsibilities:</span>{" "}
+                  <TextCard name={contract.contractType}>
+                    <TextCardTitle name="Contract Type:" />
+                  </TextCard>
+                  <TextCard name={contract.status}>
+                    <TextCardTitle name="Contract Status" />
+                  </TextCard>
+                  <TextCard name={contract.contractName}>
+                    <TextCardTitle name="Contract Name:" />
+                  </TextCard>
+                  <TextCard name={contract.registrationAddress}>
+                    <TextCardTitle name="Registration Address:" />
+                  </TextCard>
+                  <div className="text-2xl text-black">
+                    <TextCardTitle name="Job Responsibilities:" />
                     <article
                       dangerouslySetInnerHTML={{
                         __html: contract?.responsibilities,
@@ -138,81 +166,98 @@ const ContractOverview = () => {
             {/* Payment and Date Details */}
             <div className="grid gap-6 md:grid-cols-2 mt-5">
               <div className="border rounded-lg p-4">
-                <h2 className="text-center text-4xl text-gray-700 font-semibold mb-2">
-                  Payment and Date Details
-                </h2>
+                <TopHeader name="Payment and Date Details" />
                 <div className="grid gap-4">
-                  <p className="font-semibold text-2xl text-black">
-                    <span className="text-gray-600">Contract Start Date:</span>{" "}
-                    {contract.contractStartDate &&
+                  <TextCard
+                    name={
+                      contract.contractStartDate &&
                       format(
                         parseISO(contract.contractStartDate),
                         "dd MMMM, yyyy h:mm a"
-                      )}
-                  </p>
+                      )
+                    }
+                  >
+                    <TextCardTitle name="Contract Start Date:" />
+                  </TextCard>
                   {contract?.contractEndDate ? (
-                    <p className="font-semibold text-2xl text-black">
-                      <span className="text-gray-600">Contract End Date:</span>{" "}
-                      {contract.contractEndDate &&
+                    <TextCard
+                      name={
+                        contract.contractEndDate &&
                         format(
                           parseISO(contract.contractEndDate),
                           "dd MMMM, yyyy h:mm a"
-                        )}
-                    </p>
+                        )
+                      }
+                    >
+                      <TextCardTitle name="Contract End Date:" />
+                    </TextCard>
                   ) : (
                     <p>This offer is for a premanent job.</p>
                   )}
-                  <p className="font-semibold text-2xl text-black">
-                    <span className="text-gray-600">Work Start Date:</span>{" "}
-                    {contract.workStartDate &&
+                  <TextCard
+                    name={
+                      contract.workStartDate &&
                       format(
                         parseISO(contract.workStartDate),
                         "dd MMMM, yyyy h:mm a"
-                      )}
-                  </p>
-                  <p className="font-semibold text-2xl text-black">
-                    <span className="text-gray-600">Payment Due:</span>{" "}
-                    {contract.paymentDue} Days
-                  </p>
-                  <p className="font-semibold text-2xl text-black">
-                    <span className="text-gray-600">Notice Period:</span>{" "}
-                    {contract.noticePeriod.value} {contract.noticePeriod.unit}
-                  </p>
-                  <p className="font-semibold text-2xl text-black">
-                    <span className="text-gray-600">Payment Currency:</span>{" "}
-                    {contract.paymentCurrency}
-                  </p>
+                      )
+                    }
+                  >
+                    <TextCardTitle name="Work Start Date:" />
+                  </TextCard>
+                  <TextCard name={contract.paymentDue + " Days"}>
+                    <TextCardTitle name="Payment Due:" />
+                  </TextCard>
+                  <TextCard
+                    name={
+                      contract.noticePeriod.value +
+                      " " +
+                      contract.noticePeriod.unit
+                    }
+                  >
+                    <TextCardTitle name="Notice Period:" />
+                  </TextCard>
+                  <TextCard name={contract.paymentCurrency}>
+                    <TextCardTitle name="Payment Currency:" />
+                  </TextCard>
                   {contract.contractType === "Fixed" ? (
                     <>
-                      <p className="font-semibold text-2xl text-black">
-                        <span className="text-gray-600">
-                          Payment Frequency:
-                        </span>{" "}
-                        {contract.paymentDetail["fixed"].paymentFrequency}
-                      </p>
-                      <p className="font-semibold text-2xl text-black">
-                        <span className="text-gray-600">Payment Rate:</span>{" "}
-                        {contract.paymentDetail["fixed"].payment}{" "}
-                        {contract.paymentCurrency}
-                      </p>
+                      <TextCard
+                        name={contract.paymentDetail["fixed"].paymentFrequency}
+                      >
+                        <TextCardTitle name="Payment Frequency:" />
+                      </TextCard>
+                      <TextCard
+                        name={
+                          contract.paymentDetail["fixed"].payment +
+                          " " +
+                          contract.paymentCurrency
+                        }
+                      >
+                        <TextCardTitle name="Payment Rate:" />
+                      </TextCard>
                     </>
                   ) : (
                     <>
-                      <p className="font-semibold text-2xl text-black">
-                        <span className="text-gray-600">Hourly Rate:</span>{" "}
-                        {contract.paymentDetail["payAsYouGo"].hourlyRate}{" "}
-                        {contract.paymentCurrency}
-                      </p>
-                      <p className="font-semibold text-2xl text-black">
-                        <span className="text-gray-600">
-                          Minimum Work Hours Before Payment:
-                        </span>{" "}
-                        {
+                      <TextCard
+                        name={
+                          contract.paymentDetail["payAsYouGo"].hourlyRate +
+                          " " +
+                          contract.paymentCurrency
+                        }
+                      >
+                        <TextCardTitle name="Hourly Rate:" />
+                      </TextCard>
+                      <TextCard
+                        name={
                           contract.paymentDetail["payAsYouGo"]
-                            .minimumHourForPayment
-                        }{" "}
-                        Hours
-                      </p>
+                            .minimumHourForPayment +
+                          " " +
+                          "Hours"
+                        }
+                      >
+                        <TextCardTitle name="Minimum Work Hours Before Payment:" />
+                      </TextCard>
                     </>
                   )}
                 </div>
@@ -220,14 +265,11 @@ const ContractOverview = () => {
 
               {/* Compliance Details */}
               <div className="border rounded-lg p-4">
-                <h2 className="text-center text-4xl text-gray-700 font-semibold mb-2">
-                  Compliance Details
-                </h2>
+                <TopHeader name="Compliance Details" />
                 <div className="grid gap-6 mt-5">
-                  <p className="font-semibold text-2xl text-black">
-                    <span className="text-gray-600">
-                      Additional Documents Link:
-                    </span>
+                  <TextCard>
+                    <TextCardTitle name="Additional Documents Link:" />
+
                     {contract?.additionalDocuments ? (
                       <Link
                         to={contract.additionalDocuments}
@@ -238,12 +280,10 @@ const ContractOverview = () => {
                     ) : (
                       "No additional document has been uploaded"
                     )}
-                  </p>
+                  </TextCard>
 
-                  <p className="font-semibold text-2xl text-black">
-                    <span className="text-gray-600">
-                      Compliance Document Link:
-                    </span>
+                  <TextCard>
+                    <TextCardTitle name="Compliance Document Link:" />
                     {contract?.complianceDocuments ? (
                       <Link
                         to={contract.complianceDocuments}
@@ -254,9 +294,9 @@ const ContractOverview = () => {
                     ) : (
                       "No compliiance document has been uploaded."
                     )}
-                  </p>
-                  <div className="font-semibold text-2xl text-black">
-                    <span className="text-gray-600">Special Clause:</span>
+                  </TextCard>
+                  <div className="text-2xl text-black">
+                    <TextCardTitle name="Special Clause:" />
                     {contract?.specialClause ? (
                       <p
                         dangerouslySetInnerHTML={{
@@ -274,49 +314,35 @@ const ContractOverview = () => {
             {/* Contract Signature */}
             {contract?.signature && (
               <div className="border rounded-lg p-4 mt-5">
-                <h2 className="text-center text-4xl text-gray-700 font-semibold mb-2">
-                  Signatures
-                </h2>
+                <TopHeader name="Signatures" />
                 <div className="flex flex-row justify-between">
                   {contract.signature?.company && (
-                    <div className="bg-gray-100 p-6 rounded-lg shadow-md">
-                      <p className="text-xl font-bold mb-2">Company</p>
-                      <div className="text-lg font-semibold">
-                        {contract.signature?.company?.name}
-                      </div>
-                      <div className="text-gray-500">
-                        {contract.signature?.company?.date &&
-                          format(
-                            parseISO(contract.signature?.company?.date),
-                            "dd MMMM, yyyy h:mm a"
-                          )}
-                      </div>
-                      <div className="mt-2">
-                        <div className="text-lg font-semibold">
-                          {contract.signature?.company?.location}
-                        </div>
-                      </div>
-                    </div>
+                    <SignatureCard
+                      UserType={"Company"}
+                      name={contract.signature?.company?.name}
+                      date={
+                        contract.signature?.company?.date &&
+                        format(
+                          parseISO(contract.signature?.company?.date),
+                          "dd MMMM, yyyy h:mm a"
+                        )
+                      }
+                      location={contract.signature?.company?.location}
+                    />
                   )}
                   {contract.signature?.talent && (
-                    <div className="bg-gray-100 p-6 rounded-lg shadow-md">
-                      <p className="text-xl font-bold mb-2">Talent</p>
-                      <div className="text-lg font-semibold">
-                        {contract.signature?.talent?.name}
-                      </div>
-                      <div className="text-gray-500">
-                        {contract.signature?.talent?.date &&
-                          format(
-                            parseISO(contract.signature?.talent?.date),
-                            "dd MMMM, yyyy h:mm a"
-                          )}
-                      </div>
-                      <div className="mt-2">
-                        <div className="text-lg font-semibold">
-                          {contract.signature?.talent?.location}{" "}
-                        </div>
-                      </div>
-                    </div>
+                    <SignatureCard
+                      UserType={"Talent"}
+                      name={contract.signature?.talent?.name}
+                      date={
+                        contract.signature?.talent?.date &&
+                        format(
+                          parseISO(contract.signature?.talent?.date),
+                          "dd MMMM, yyyy h:mm a"
+                        )
+                      }
+                      location={contract.signature?.talent?.location}
+                    />
                   )}
                 </div>
               </div>

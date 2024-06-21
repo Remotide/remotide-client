@@ -28,15 +28,17 @@ const WithdrawalMethods = () => {
       <h1 className="mb-4 text-4xl font-bold text-gray-900">
         Registered Withdrawal methods
       </h1>
-      <div className="flex flex-row h-20 mt-5 items-center font-bold text-base md:text-3xl justify-between px-3 md:px-12 w-full bg-white">
-        <p>Withdrawal accounts</p>
-        <div className="flex flex-row w-60 items-center justify-between">
+      <div className="flex flex-row max-sm:flex-col max-sm:items-center max-sm:gap-4 py-4 mt-5 items-center font-bold text-base md:text-3xl justify-between px-3 md:px-12 w-full bg-white">
+        <p className="text-2xl">Withdrawal accounts</p>
+        <div className="flex flex-row w-80 items-center justify-between">
           <select
             value={methodFilter}
             onChange={(event) => setMethodFilter(event.target.value)}
-            className="col-span-2 p-2.5 h-14 w-32 bg-slate-200 border-blue-300 rounded-lg sm:text-2xl text-base focus:border-blue-700 focus:ring-blue-700"
+            className="col-span-2 p-2.5 h-14 w-48 bg-slate-200 border-blue-300 rounded-lg sm:text-2xl text-base focus:border-blue-700 focus:ring-blue-700"
           >
-            <option value="paypal">Paypal</option>
+            <option value="">All Methods</option>
+            <option value="Paypal">Paypal</option>
+            <option value="Flutterwave">FlutterWave</option>
           </select>
           <Button size="14">
             <Link to="/talent/createWithdrawalMethod">Create</Link>
@@ -70,11 +72,6 @@ const WithdrawalMethods = () => {
                   {withdrawal.method}
                 </td>
                 <td className="flex gap-x-3 md:px-6 md:py-4 px-3 py-2">
-                  <Button size="sm:w-20">
-                    <Link to={`/talent/editWithdrawalMethod/${withdrawal._id}`}>
-                      Edit
-                    </Link>
-                  </Button>
                   <ConfirmationDialog
                     label="Delete Withdrawal Method"
                     description={`Are you sure you want to delete this ${withdrawal.method} withdrawal method?`}

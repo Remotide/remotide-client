@@ -143,9 +143,19 @@ const AllJobs = () => {
                             : " Unflag Job "
                         }
                         description={
-                          !job?.violating_policies
-                            ? `Are you sure you want to flag this ${job.title} job for violating policy?`
-                            : `Are you sure you want to un-flag this ${job.title} job ?`
+                          !job?.violating_policies ? (
+                            <p>
+                              Are you sure you want to flag this{" "}
+                              <span className="text-blue-500">{job.title}</span>{" "}
+                              job for violating policy?
+                            </p>
+                          ) : (
+                            <p>
+                              Are you sure you want to un-flag this{" "}
+                              <span className="text-blue-500">{job.title}</span>{" "}
+                              job ?
+                            </p>
+                          )
                         }
                         title={
                           !job?.violating_policies ? "Flag Job" : " Unflag Job "

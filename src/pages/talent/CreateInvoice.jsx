@@ -105,7 +105,7 @@ const CreateInvoice = () => {
       </div>
       <div className="flex flex-row w-full">
         <Button size="w-full" type="submit">
-          Create Invoice
+          {isInvoiceCreating ? "Creating Invoice..." : "Create Invoice"}
         </Button>
       </div>
     </form>

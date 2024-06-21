@@ -67,7 +67,7 @@ export const useEditTalentProfile= () => {
             notify({
               title: "Error",
               variant: "error",
-              description: "Request failed",
+              description: error.response.data.message,
             });
           }
         } else {

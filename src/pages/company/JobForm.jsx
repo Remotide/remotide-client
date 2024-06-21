@@ -131,7 +131,11 @@ const JobForm = () => {
             </div>
             <div className="flex mt-8">
               <Button type="submit" size="w-full" disabled={isLoading}>
-                {status}
+                {!isLoading
+                  ? status
+                  : status == "Edit"
+                  ? "Saving changes..."
+                  : "Creating Job"}
               </Button>
             </div>
           </form>

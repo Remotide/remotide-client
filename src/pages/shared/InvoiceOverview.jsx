@@ -5,6 +5,7 @@ import { getUser } from "@/actions";
 import { format, parseISO } from "date-fns";
 import { useReactToPrint } from "react-to-print";
 import { useFetchInvoice, useCreateFlutterWavePayment } from "@/actions";
+
 const InvoiceOverview = () => {
   const { invoiceId } = useParams();
   const { data: invoice, isFetching: isInvoiceFetching } =
@@ -59,8 +60,8 @@ const InvoiceOverview = () => {
           <p className="text-black font-bold text-5xl text-center">
             Invoice Information
           </p>
-          <div className="flex flex-row justify-between">
-            <div className="flex flex-col  text-black bg-cyan-200 rounded-xl shadow-md px-5">
+          <div className="flex flex-row max-sm:flex-col max-sm:gap-5 mt-4 justify-between">
+            <div className="flex flex-col text-black bg-cyan-200 rounded-xl shadow-md px-5">
               <p className="font-semibold text-2xl">From:</p>
               {/* TODO: fetch and place talent information here. */}
 
@@ -135,14 +136,14 @@ const InvoiceOverview = () => {
             <div className="w-52">
               {user.role == "company" &&
                 invoice &&
-                invoice.status != "fullyPaid" && (
+                invoice.status != "Fully Paid" && (
                   <PayPalProvider invoice={invoice} />
                 )}
             </div>
             <div className="w-52">
               {user.role == "company" &&
                 invoice &&
-                invoice.status != "fullyPaid" && (
+                invoice.status != "Fully Paid" && (
                   <Button
                     background="bg-yellow-400 hover:bg-yellow-600"
                     color="text-black"

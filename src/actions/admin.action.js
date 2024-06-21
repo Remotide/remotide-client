@@ -12,7 +12,7 @@ export const useFetchStats = () => {
     queryFn: async () => {
       try {
         const res=await fetcher(`${baseURL}/stats`)
-        return res
+        return res.data
       } catch (error) {
         notify({
           title: "Error",
@@ -83,7 +83,7 @@ export const activateUser = () => {
             notify({
               title: "Error",
               variant: "error",
-              description: "User activation failed.",
+              description: error.response.data.message,
             });
           }
       },
@@ -123,7 +123,7 @@ export const deactivateUser = () => {
             notify({
               title: "Error",
               variant: "error",
-              description: "User de-activation failed.",
+              description: error.response.data.message,
             });
           }
       },
@@ -211,8 +211,8 @@ export const useCreateAdmin= () => {
             notify({
               title: "Error",
               variant: "error",
-              description: "Admin creation failed",
-            });
+              description: error.response.data.message,
+            })
           }
       },
       onSuccess: (_, variables) => {

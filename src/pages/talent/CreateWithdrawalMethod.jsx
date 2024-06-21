@@ -12,6 +12,7 @@ const PayPalPaymentDetailsForm = ({
   onSubmit,
   paypalPaymentDetails,
   setPaypalPaymentDetails,
+  isCreating,
 }) => {
   const handleChange = (e) => {
     const { id, value, type } = e.target;
@@ -45,7 +46,7 @@ const PayPalPaymentDetailsForm = ({
         />
       </div>
       <div className="flex justify-end">
-        <Button type="submit">Submit</Button>
+        <Button type="submit">{isCreating ? "Creating..." : "Submit"}</Button>
       </div>
     </form>
   );
@@ -55,6 +56,7 @@ const FlutterWavePaymentDetailsForm = ({
   onSubmit,
   flutterWavePaymentDetails,
   setFlutterWavePaymentDetails,
+  isCreating,
 }) => {
   const handleChange = (e, name) => {
     const { value } = e.target;
@@ -158,7 +160,7 @@ const FlutterWavePaymentDetailsForm = ({
         />
       </div>
       <div className="flex justify-end">
-        <Button type="submit">Submit</Button>
+        <Button type="submit">{isCreating ? "Creating..." : "Submit"}</Button>
       </div>
     </form>
   );
@@ -210,6 +212,7 @@ const CreateWithdrawalMethod = () => {
             onSubmit={handleSubmit}
             paypalPaymentDetails={paypalPaymentDetails}
             setPaypalPaymentDetails={setPaypalPaymentDetails}
+            isCreating={isCreating}
           />
         )}
         {withdrawalMethod === "FlutterWave" && (
@@ -217,6 +220,7 @@ const CreateWithdrawalMethod = () => {
             onSubmit={handleSubmit}
             flutterWavePaymentDetails={flutterWavePaymentDetails}
             setFlutterWavePaymentDetails={setFlutterWavePaymentDetails}
+            isCreating={isCreating}
           />
         )}
       </div>

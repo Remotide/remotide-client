@@ -122,7 +122,7 @@ export const useCreateContract = () => {
         notify({
           title: "Error",
           variant: "error",
-          description: "Request failed",
+          description: error.response.data.message,
         });
       }
     },

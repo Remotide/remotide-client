@@ -36,7 +36,7 @@ const Jobs = () => {
         value={searchTerm}
         onChange={(event) => setSearchTerm(event.target.value)}
       />
-      <div className="flex flex-row h-12 mt-10 items-center font-bold text-base md:text-3xl justify-between px-3 md:px-12 w-full bg-white">
+      <div className="flex flex-row h-20 mt-10 items-center font-bold text-base md:text-3xl justify-between px-3 md:px-12 w-full bg-white">
         <p>Jobs</p>
         <Button size="14">
           <Link to="/company/job">Create</Link>
@@ -81,7 +81,7 @@ const Jobs = () => {
                   >
                     <Link
                       to={`/company/displayTalent/${job._id}/${job.title}`}
-                      className="hover:underline hover:text-2xl"
+                      className="hover:underline"
                     >
                       {job.title}
                     </Link>

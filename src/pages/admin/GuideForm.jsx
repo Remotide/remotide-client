@@ -8,17 +8,17 @@ const GuideForm = () => {
 
   const { guideId } = useParams();
   const status = guideId ? "Edit" : "Create";
-  var postGuide, isLoading;
+  var postGuide, isSubmitting;
 
   const { editGuide, isEditing } = useEditGuide();
   const { createGuide, isCreating } = useCreateGuide();
 
   if (status == "Create") {
     postGuide = createGuide;
-    isLoading = isCreating;
+    isSubmitting = isCreating;
   } else {
     postGuide = editGuide;
-    isLoading = isEditing;
+    isSubmitting = isEditing;
   }
 
   const { data: guideFetched } = useFetchGuide(guideId);
@@ -89,8 +89,12 @@ const GuideForm = () => {
 
             <div className="mt-6">
               <span className="flex flex-grow items-center justify-center w-full rounded-md shadow-sm">
-                <Button size="w-full" type="submit" disabled={isLoading}>
-                  {status}
+                <Button size="w-full" type="submit" disabled={isSubmitting}>
+                  {!isSubmitting
+                    ? status
+                    : status == "Create"
+                    ? "Creating"
+                    : "Saving Changes"}
                 </Button>
               </span>
             </div>

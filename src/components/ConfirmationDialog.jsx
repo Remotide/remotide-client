@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button } from "./index";
-const ConfirmDialog = ({ onConfirm, title, label, description }) => {
+const ConfirmDialog = ({ onConfirm, title, label, description, disabled }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const openDialog = () => setIsOpen(true);
@@ -13,6 +13,7 @@ const ConfirmDialog = ({ onConfirm, title, label, description }) => {
         size="sm:w-fit"
         background="bg-red-500"
         color="text-black"
+        disabled={disabled}
       >
         {title}
       </Button>

@@ -61,7 +61,7 @@ const Transaction = () => {
         Transactions Associated with You
       </h1>
 
-      <div className="flex flex-row w-full justify-between items-center">
+      <div className="flex flex-row max-md:flex-col w-full justify-between items-center">
         <Input
           type="text"
           size="w-full"
@@ -70,50 +70,52 @@ const Transaction = () => {
           value={searchTerm}
           onChange={(event) => setSearchTerm(event.target.value)}
         />
-        <select
-          value={statusFilter}
-          onChange={(event) => setStatusFilter(event.target.value)}
-          className="mb-2 p-2.5 w-48 mx-20 bg-slate-200 border-blue-300 rounded-lg sm:text-2xl text-base focus:border-blue-700 focus:ring-blue-700"
-        >
-          <option value="">All Types</option>
-          <option value="Payment">Payment</option>
-          <option value="Withdrawal">Withdrawal</option>
-        </select>
-        <div className="dropdown dropdown-bottom dropdown-end">
-          <div
-            tabIndex={0}
-            role="button"
-            className="flex flex-row items-center justify-center rounded-md bg-slate-200 border-blue-300 w-48 p-2"
+        <div className="flex flex-row align-middle max-md:mt-5">
+          <select
+            value={statusFilter}
+            onChange={(event) => setStatusFilter(event.target.value)}
+            className="mb-2 p-2.5 w-48 mx-20 bg-slate-200 border-blue-300 rounded-lg sm:text-2xl text-base focus:border-blue-700 focus:ring-blue-700"
           >
-            <FaCalendar size={16} /> Date Filter
-          </div>
-          <div
-            tabIndex={0}
-            className="dropdown-content bg-gray-200 rounded-lg flex flex-col p-6"
-          >
-            <p className="leading-tight text-xl font-medium mb-4">
-              Transaction Date
-            </p>
-            <div className="flex flex-row space-x-6">
-              <Label htmlFor="startDate">Start Date</Label>
-              <Input
-                type="date"
-                id="startDate"
-                name="startDate"
-                value={format(startDate, "yyyy-MM-dd")}
-                required={true}
-                size="w-50"
-                onChange={(e) => setStartDate(e.target.value)}
-              />
-              <Label htmlFor="endDate">End Date</Label>
-              <Input
-                type="date"
-                id="endDate"
-                value={format(endDate, "yyyy-MM-dd")}
-                name="endDate"
-                size="w-50"
-                onChange={(e) => setEndDate(e.target.value)}
-              />
+            <option value="">All Types</option>
+            <option value="Payment">Payment</option>
+            <option value="Withdrawal">Withdrawal</option>
+          </select>
+          <div className="dropdown dropdown-bottom dropdown-end">
+            <div
+              tabIndex={0}
+              role="button"
+              className="flex flex-row items-center justify-center rounded-md bg-slate-200 border-blue-300 w-48 p-2"
+            >
+              <FaCalendar size={16} /> Date Filter
+            </div>
+            <div
+              tabIndex={0}
+              className="dropdown-content bg-gray-200 rounded-lg flex flex-col p-6"
+            >
+              <p className="leading-tight text-xl font-medium mb-4">
+                Transaction Date
+              </p>
+              <div className="flex flex-row space-x-6">
+                <Label htmlFor="startDate">Start Date</Label>
+                <Input
+                  type="date"
+                  id="startDate"
+                  name="startDate"
+                  value={format(startDate, "yyyy-MM-dd")}
+                  required={true}
+                  size="w-50"
+                  onChange={(e) => setStartDate(e.target.value)}
+                />
+                <Label htmlFor="endDate">End Date</Label>
+                <Input
+                  type="date"
+                  id="endDate"
+                  value={format(endDate, "yyyy-MM-dd")}
+                  name="endDate"
+                  size="w-50"
+                  onChange={(e) => setEndDate(e.target.value)}
+                />
+              </div>
             </div>
           </div>
         </div>
