@@ -91,7 +91,7 @@ export const useCreateJob= () => {
             notify({
               title: "Error",
               variant: "error",
-              description: "Request failed",
+              description: error.response.data.message,
             });
           }
         } else {
@@ -142,7 +142,7 @@ export const useEditJob= () => {
         notify({
             title: "Error",
             variant: "error",
-            description: "Request failed",
+            description: error.response.data.message,
         });
         }
       },

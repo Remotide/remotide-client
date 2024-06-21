@@ -30,7 +30,7 @@ const Contracts = () => {
       <h1 className="mb-4 text-4xl font-bold text-gray-900">
         Contracts Associated with You
       </h1>
-      <div className="flex flex-row w-full justify-between items-center">
+      <div className="flex flex-row max-md:flex-col w-full justify-between items-center">
         <Input
           type="text"
           size="w-full"
@@ -39,25 +39,27 @@ const Contracts = () => {
           value={searchTerm}
           onChange={(event) => setSearchTerm(event.target.value)}
         />
-        <select
-          value={statusFilter}
-          onChange={(event) => setStatusFilter(event.target.value)}
-          className="mb-2 p-2.5 w-48 mx-20 bg-slate-200 border-blue-300 rounded-lg sm:text-2xl text-base focus:border-blue-700 focus:ring-blue-700"
-        >
-          <option value="">All Statuses</option>
-          <option value="Unsigned">Unsigned</option>
-          <option value="OnProgress">OnProgress</option>
-          <option value="Terminated">Terminated</option>
-        </select>
-        <select
-          value={typeFilter}
-          onChange={(event) => setTypeFilter(event.target.value)}
-          className="col-span-2 mb-2 p-2.5 w-48 bg-slate-200 border-blue-300 rounded-lg sm:text-2xl text-base focus:border-blue-700 focus:ring-blue-700"
-        >
-          <option value="">All Types</option>
-          <option value="Fixed">Fixed</option>
-          <option value="Pay As You Go">Pay as you go</option>
-        </select>
+        <div className="flex flex-row align-middle max-md:mt-5">
+          <select
+            value={statusFilter}
+            onChange={(event) => setStatusFilter(event.target.value)}
+            className="mb-2 p-2.5 w-48 mx-20 bg-slate-200 border-blue-300 rounded-lg sm:text-2xl text-base focus:border-blue-700 focus:ring-blue-700"
+          >
+            <option value="">All Statuses</option>
+            <option value="Unsigned">Unsigned</option>
+            <option value="OnProgress">OnProgress</option>
+            <option value="Terminated">Terminated</option>
+          </select>
+          <select
+            value={typeFilter}
+            onChange={(event) => setTypeFilter(event.target.value)}
+            className="col-span-2 mb-2 p-2.5 w-48 bg-slate-200 border-blue-300 rounded-lg sm:text-2xl text-base focus:border-blue-700 focus:ring-blue-700"
+          >
+            <option value="">All Types</option>
+            <option value="Fixed">Fixed</option>
+            <option value="Pay As You Go">Pay as you go</option>
+          </select>
+        </div>
       </div>
       <div className="flex flex-row h-20 mt-10 items-center font-bold text-base md:text-3xl justify-between px-3 md:px-12 w-full bg-white">
         <p>Contracts</p>

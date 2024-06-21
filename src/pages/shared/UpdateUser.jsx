@@ -74,7 +74,7 @@ const UpdateUser = () => {
           />
         </div>
         <Button type="submit" style="w-full" disabled={isUserUpdateSubmitting}>
-          {!isUserUpdateSubmitting ? "Update Details" : "Submitting"}
+          {!isUserUpdateSubmitting ? "Update Details" : "Saving Changes..."}
         </Button>
       </form>
 

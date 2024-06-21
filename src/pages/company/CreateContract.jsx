@@ -386,6 +386,7 @@ const ComplianceForm = ({
   onSubmit,
   complianceDetails,
   setComplianceDetails,
+  isCreating,
 }) => {
   const handleChange = (e) => {
     const { id, value, type } = e.target;
@@ -471,7 +472,9 @@ const ComplianceForm = ({
         />
       </div>
       <div className="flex justify-end">
-        <Button type="submit">Submit</Button>
+        <Button type="submit" disabled={isCreating}>
+          {!isCreating ? "Submit" : "Creating Contract..."}
+        </Button>
       </div>
     </form>
   );
@@ -655,6 +658,7 @@ const CreateContract = () => {
             onSubmit={handleSubmit}
             complianceDetails={complianceDetails}
             setComplianceDetails={setComplianceDetails}
+            isCreating={isCreating}
           />
         )}
       </div>

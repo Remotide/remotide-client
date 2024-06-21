@@ -111,7 +111,20 @@ const UsersList = () => {
                         </Button> */}
                           <ConfirmationDialog
                             label="Deactivate Talent"
-                            description={`Are you sure you want to de-activate user with name '${talent.name}' and email '${talent.email}' ?`}
+                            description={
+                              <p>
+                                Are you sure you want to de-activate user with
+                                name{" "}
+                                <span className="text-blue-500">
+                                  {talent.name}
+                                </span>{" "}
+                                and email{" "}
+                                <span className="text-blue-500">
+                                  {talent.email}
+                                </span>{" "}
+                                ?
+                              </p>
+                            }
                             title={`Deactivate Talent`}
                             key={index}
                             onConfirm={() => {
@@ -183,7 +196,20 @@ const UsersList = () => {
                         </Button> */}
                           <ConfirmationDialog
                             label="Deactivate Company"
-                            description={`Are you sure you want to de-activate user with name '${company.name}' and email '${company.email}' ?`}
+                            description={
+                              <p>
+                                Are you sure you want to de-activate user with
+                                name{" "}
+                                <span className="text-blue-500">
+                                  {company.name}
+                                </span>{" "}
+                                and email{" "}
+                                <span className="text-blue-500">
+                                  {company.email}
+                                </span>{" "}
+                                ?
+                              </p>
+                            }
                             title={`Deactivate Company`}
                             key={index}
                             onConfirm={() => {

@@ -162,11 +162,11 @@ export const useCreatePaypalPayout = () => {
         console.log(payment);
       } catch (error) {
         console.log(error);
-        // notify({
-        //   title: "Error",
-        //   variant: "error",
-        //   description: error.response.data.message,
-        // });
+        notify({
+          title: "Error",
+          variant: "error",
+          description: error.response.data.message,
+        });
       }
     },
     onSuccess: (_, variables) => {
@@ -207,11 +207,11 @@ export const useCreateFlutterWaveTransfer = () => {
         console.log(payment);
       } catch (error) {
         console.log(error);
-        // notify({
-        //   title: "Error",
-        //   variant: "error",
-        //   description: error.response.data.message,
-        // });
+        notify({
+          title: "Error",
+          variant: "error",
+          description: error.response.data.message,
+        });
       }
     },
     onSuccess: (_, variables) => {

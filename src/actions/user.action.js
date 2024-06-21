@@ -14,17 +14,17 @@ function useUserActions() {
     forgotPassword,
     resetPassword,
     updateUser,
-    updatePassword
+    updatePassword,
   };
 
   function navigator(role) {
-      if (role=="talent"){
+    if (role == "talent") {
       navigate("/talent");
-      } else if(role=="company"){
-      navigate("/company")
-      } else if(role=="admin" || role=="superadmin"){
-      navigate("/admin")
-      }
+    } else if (role == "company") {
+      navigate("/company");
+    } else if (role == "admin" || role == "superadmin") {
+      navigate("/admin");
+    }
   }
 
   // Login the user
@@ -33,14 +33,12 @@ function useUserActions() {
       // Registering the account and tokens in the store
       const res = await axios.post(`/api${baseURL}/login/`, data);
       // console.log(res.data)
-      const user=res.data["user"];
-      setUserData(
-        {
-          access: res.data.token,
-          user: user
-        }
-      );
-      const role = user["role"]
+      const user = res.data["user"];
+      setUserData({
+        access: res.data.token,
+        user: user,
+      });
+      const role = user["role"];
       navigator(role);
       notify({
         title: "Success",
@@ -54,7 +52,7 @@ function useUserActions() {
         variant: "error",
         description: error.response.data.message,
       });
-    }  
+    }
   }
 
   // Register the user
@@ -66,7 +64,7 @@ function useUserActions() {
       // console.log(res)
       setUserData({
         access: res.data.token,
-        user: user
+        user: user,
       });
       const role = user["role"];
       navigator(role);
@@ -76,7 +74,7 @@ function useUserActions() {
         description: "Registered Successfully.",
       });
     } catch (error) {
-      console.log(error)
+      console.log(error);
       notify({
         title: "Error",
         variant: "error",
@@ -87,7 +85,9 @@ function useUserActions() {
   async function forgotPassword(email) {
     try {
       // TODO: Change Request route here
-      const res = await axios.post(`/api${baseURL}/forgot-password/`,{email})
+      const res = await axios.post(`/api${baseURL}/forgot-password/`, {
+        email,
+      });
       notify({
         title: "Success",
         variant: "success",
@@ -97,26 +97,29 @@ function useUserActions() {
       notify({
         title: "Error",
         variant: "error",
-        description: "Request to reset password failed.",
+        description: error.response.data.message,
       });
     }
   }
   async function resetPassword(data) {
-    const {token,password} = data;
+    const { token, password } = data;
     try {
       // TODO: Change Request route here
-      const res = await axios.post(`/api${baseURL}/reset-password/${token}`,{password})
+      const res = await axios.post(`/api${baseURL}/reset-password/${token}`, {
+        password,
+      });
       notify({
         title: "Success",
         variant: "success",
-        description: "Password has been successfully reset you can login with the new password now.",
+        description:
+          "Password has been successfully reset you can login with the new password now.",
       });
-      navigate("/")
+      navigate("/");
     } catch (error) {
       notify({
         title: "Error",
         variant: "error",
-        description: "Password reset failed.",
+        description: error.response.data.message,
       });
     }
   }
@@ -126,15 +129,18 @@ function useUserActions() {
     navigate("/");
   }
   async function updateUser(values) {
-    const {name,email} = values;
+    const { name, email } = values;
     try {
       // TODO: Change Request route here
-      const res = await axiosService.post(`${baseURL}/edit-profile`,{name,email})
+      const res = await axiosService.post(`${baseURL}/edit-profile`, {
+        name,
+        email,
+      });
       const user = res.data["user"];
       // console.log(res)
       setUserData({
         access: res.data.token,
-        user: user
+        user: user,
       });
       const role = user["role"];
       navigator(role);
@@ -147,20 +153,23 @@ function useUserActions() {
       notify({
         title: "Error",
         variant: "error",
-        description: "User update failed.",
+        description: error.response.data.message,
       });
     }
   }
   async function updatePassword(values) {
-    const {currentPassword,newPassword} = values;
+    const { currentPassword, newPassword } = values;
     try {
       // TODO: Change Request route here
-      const res = await axiosService.post(`${baseURL}/change-password`,{currentPassword,newPassword})
+      const res = await axiosService.post(`${baseURL}/change-password`, {
+        currentPassword,
+        newPassword,
+      });
       const user = res.data["user"];
       // console.log(res)
       setUserData({
         access: res.data.token,
-        user: user
+        user: user,
       });
       const role = user["role"];
       navigator(role);
@@ -173,7 +182,7 @@ function useUserActions() {
       notify({
         title: "Error",
         variant: "error",
-        description: "Password change failed.",
+        description: error.response.data.message,
       });
     }
   }

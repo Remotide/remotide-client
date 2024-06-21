@@ -5,7 +5,7 @@ const Modal = ({ isOpen, onClose, children }) => {
 
   return (
     <div className="fixed inset-0 flex items-start mt-10 justify-center z-50 h-fit">
-      <div className="bg-gray-200 border-2 rounded-xl border-white p-6 shadow-lg w-1/3 max-sm:w-3/4 m-auto">
+      <div className="bg-gray-200 border-2 rounded-xl border-white p-6 shadow-lg w-1/3 max-lg:w-3/4 m-auto">
         <div className="flex justify-end inset-0 bg-inherit">
           <FaWindowClose onClick={onClose} size={20} className="bg-inherit" />
         </div>

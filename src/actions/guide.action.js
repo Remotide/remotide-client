@@ -69,7 +69,7 @@ export const useCreateGuide= () => {
             notify({
               title: "Error",
               variant: "error",
-              description: "Request failed",
+              description: error.response.data.message,
             });
           }
       },
@@ -114,7 +114,7 @@ export const useEditGuide= () => {
         notify({
             title: "Error",
             variant: "error",
-            description: "Request failed",
+            description: error.response.data.message,
         });
         }
       },

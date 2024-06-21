@@ -59,7 +59,7 @@ export const useCreateSkill= () => {
             notify({
               title: "Error",
               variant: "error",
-              description: "Request failed",
+              description: error.response.data.message,
             });
           }
       },
@@ -102,7 +102,7 @@ export const useEditSkill= () => {
         notify({
             title: "Error",
             variant: "error",
-            description: "Request failed",
+            description: error.response.data.message,
         });
         }
       },
